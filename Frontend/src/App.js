@@ -1,10 +1,14 @@
+
 import "./App.css";
+
+import AllRoutes from "./Pages/AllRoutes";
 
 function App() {
   return (
     <div>
-      <h1>Harshal</h1>
+      <AllRoutes />
     </div>
+
   );
 }
 
