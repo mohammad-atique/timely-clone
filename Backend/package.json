@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server":"nodemon src/index.js",
-    "start":"node src/index.js",
+    "server": "nodemon src/server.js",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
-    "mongoose": "^6.6.2"
+    "mongoose": "^6.6.2",
+    "nodemon": "^2.0.20"
   }
 }

@@ -1,11 +1,14 @@
+
 import "./App.css";
-import Tasks from "./components/Task";
+
+import AllRoutes from "./Pages/AllRoutes";
 
 function App() {
   return (
-    <>
-      <Tasks/>
-    </>
+    <div>
+      <AllRoutes />
+    </div>
+
   );
 }
 
