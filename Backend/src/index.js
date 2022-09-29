@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require('cors');
-const { projectController } = require("./Routes/project.Route");
+const { projectController } = require("./routes/project.Route");
 const app = express();
 app.use(cors())
 app.use(express.urlencoded({ extended: false,limit :'50mb' }));
