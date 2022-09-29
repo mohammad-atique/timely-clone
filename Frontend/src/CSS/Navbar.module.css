@@ -1,0 +1,43 @@
+.navback {
+  background-color: #7133ca;
+  height: 60px;
+  display: flex;
+  padding-top: 20px;
+}
+.logoimg {
+  height: 45px;
+  margin-top: -15px;
+  margin-left: 60px;
+  margin-right: 40px;
+}
+.droplogo {
+  display: flex;
+}
+.dropp {
+  margin-left: 10px;
+  font-size: 15px;
+}
+.trialbtn {
+  background-color: white;
+  color: black;
+  font-size: 10px;
+  font-weight: 600;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.trialbtn:hover {
+  background-color: rgb(2, 2, 51);
+}
+.memimg {
+  margin-right: 50px;
+}
+@media (max-width: 1024px) {
+  .navback {
+    display: none;
+  }
+}
+@media (max-width: 48px) {
+  .navback {
+    display: none;
+  }
+}
