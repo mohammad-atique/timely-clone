@@ -1,13 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import ProfileEditPage from './Components/ProfileEditor-Frontend/ProfileEditPage';
 
+import "./App.css";
+import AllRoutes from "./Pages/AllRoutes";
 
 function App() {
   return (
-    <>
-        <ProfileEditPage />
-    </>
+    <div>
+      <AllRoutes />
+    </div>
+
   );
 }
 
