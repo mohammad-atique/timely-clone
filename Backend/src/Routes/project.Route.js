@@ -31,20 +31,26 @@ projectController.get("/search",async(req,res)=>{
 projectController.post("/create",async(req,res)=>{
 
     const{userId,projectName,client,tag}=req.body
+    const checkName=ProjectModel.findOne({projectName:projectName})
+    if(!checkName){
+        if(!userId||!projectName||!client||!tag){
+            return res.status(400).json({msg:"Please fill all the input fields"})
+        }
     
-    if(!userId||!projectName||!client||!tag){
-        return res.status(400).json({msg:"Please fill all the input fields"})
+        const project=await new ProjectModel({userId:userId,projectName:projectName,client:client,tag:tag})
+    
+        try{
+            project.save()
+            return res.status(201).json({msg:"Project Created"})
+        }catch(err){
+            console.log(err)
+            return res.status(500).json({msg:"Something went wrong, please try again."})
+        }
+    }else{
+        res.status(400).json({msg:"This project already exists, please choose another name for project."})
     }
-
-    const project=await new ProjectModel({userId:userId,projectName:projectName,client:client,tag:tag})
-
-    try{
-        project.save()
-        return res.status(201).json({msg:"Project Created"})
-    }catch(err){
-        console.log(err)
-        return res.status(500).json({msg:"Something went wrong, please try again."})
-    }
+    
+    
 
 })
 
