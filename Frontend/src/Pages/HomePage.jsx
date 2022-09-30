@@ -6,6 +6,11 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { RiTimerFlashLine, RiTeamLine } from "react-icons/ri";
 import { TbCalendarStats } from "react-icons/tb";
+import { MdOutlinePeopleAlt } from "react-icons/md";
+import { BsPersonBoundingBox, BsGlobe } from "react-icons/bs";
+import { IoIosRocket } from "react-icons/io";
+import { CgProfile } from "react-icons/cg";
+import { FaHandshake } from "react-icons/fa";
 
 const HomePage = () => {
   return (
@@ -314,6 +319,178 @@ const HomePage = () => {
           </div>
         </div>
         <div className={styles.seeinte}>see integration</div>
+      </div>
+      {/* ///////////////////////////////
+      //////HomePage Down /////////////
+      ////////////////////////////////// */}
+      <div className={styles.downpage}>
+        <div className={styles.down1}>
+          <MdOutlinePeopleAlt size={50} />
+        </div>
+        <div className={styles.down2}>
+          <h1>Trusted by 5000+ businesses globally</h1>
+        </div>
+        <div className={styles.down3}>
+          <p>
+            Whether you have hundreds of colleagues or none at all, with Timely
+            size doesn’t matter. We help businesses of all sizes access the
+            benefits of automatic time tracking, with flexible subscription
+            plans that scale to meet your needs.
+          </p>
+        </div>
+        <div className={styles.down4}>
+          <div className={styles.down41}>
+            <BsPersonBoundingBox size={40} />
+            <p className={styles.down42}>
+              Specialist departments in corpotates
+            </p>
+          </div>
+          <div className={styles.down41}>
+            <BsGlobe size={40} />
+            <p className={styles.down42}>
+              International firms and agency groups
+            </p>
+          </div>
+          <div className={styles.down41}>
+            <IoIosRocket size={40} />
+            <p className={styles.down42}>Small businesses and startups</p>
+          </div>
+          <div className={styles.down41}>
+            <CgProfile size={40} />
+            <p className={styles.down42}>Consultants and freelancers</p>
+          </div>
+          <div className={styles.down41}>
+            <FaHandshake size={40} />
+            <p className={styles.down42}>Inter-organizational partnership</p>
+          </div>
+        </div>
+        <div className={styles.down5}>
+          <div>
+            <img
+              className={styles.down51}
+              src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/6257f2528a39956f438af4f5_global.jpg"
+              alt="imgdown"
+            />
+          </div>
+          <div className={styles.down52}>
+            <h1 className={styles.down52h1}>
+              Timely is helping our organization transform time tracking from a
+              chore to a simple review process.
+            </h1>
+            <img
+              className={styles.down52img}
+              src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/6257f2528a39952ab78af332_grant-thornton-vector-logo.svg"
+              alt="imglogodown"
+            />
+            <p className={styles.down52p1}>
+              See how Grant Thornton leverages Timely’s automation to increase
+              time tracking accuracy and efficiency across its Legal and
+              Finance, Tax and Regulatory, and IT departments.
+            </p>
+            <p className={styles.down52p2}>Grant Thornton case study</p>
+          </div>
+        </div>
+        <div className={styles.down6}>
+          <div>
+            <img
+              src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/62b3651fd96ad4e0c44915ed_TimeTracking_MostImplementable_Total.svg"
+              alt="downimg1"
+            />
+          </div>
+          <div>
+            <img
+              src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/62b36657dfae2feee178fee9_TimeTracking_MomentumLeader_Leader.svg"
+              alt="downimg2"
+            />
+          </div>
+          <div>
+            <img
+              src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/62b3651fc9eb5ab5b7d8536c_TimeTracking_Leader_Leader.svg"
+              alt="downimg3"
+            />
+          </div>
+          <div>
+            <img
+              src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/6257f2528a3995b0a08af4da_loveus.svg"
+              alt="downimg4"
+            />
+          </div>
+          <div>
+            <img
+              src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/62b3668136276388dc2815e8_TimeTracking_HighPerformer_Mid-Market_HighPerformer.svg"
+              alt="downimg5"
+            />
+          </div>
+          <div>
+            <img
+              src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/62b3651fdb7877357a9300c3_TimeTracking_BestUsability_Total.svg"
+              alt="downimg6"
+            />
+          </div>
+          <div>
+            <img
+              src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/62b3651fdfae2ff62378f39f_TimeTracking_BestRelationship_Total.svg"
+              alt="downimg7"
+            />
+          </div>
+        </div>
+        <div className={styles.down7}>
+          <h1 className={styles.down71}>
+            Try <span style={{ color: "#0ef0b8" }}>Timely</span> for free!
+          </h1>
+          <p className={styles.down72}>
+            Discover the power of Timely's automated time tracking with a 14-day
+            free trial
+          </p>
+          <div>
+            <InputGroup className="mb-3">
+              <Form.Control
+                className={styles.topone4}
+                placeholder="Enter your work email"
+                aria-label="Enter your work email"
+                aria-describedby="basic-addon2"
+              />
+              <Button
+                style={{ color: "white", backgroundColor: "darkblue" }}
+                variant="outline-secondary"
+                id="button-addon2"
+              >
+                Start my free trial
+              </Button>
+            </InputGroup>
+          </div>
+          <div className={styles.down73}>
+            <div style={{ display: "flex" }}>
+              <img
+                src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/6257f2528a3995099e8af447_light-bulb.svg"
+                alt="bulb"
+              />
+              <p>Trusted by 5000+ businesses globally</p>
+            </div>
+            <div style={{ display: "flex" }}>
+              <img
+                src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/6257f2528a39951c448af440_thumb-down.svg"
+                alt="thumpsup"
+              />
+              <p>Free 14-day trial — No credit cards needed</p>
+            </div>
+            <div style={{ display: "flex" }}>
+              <img
+                src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/6257f2528a3995099e8af447_light-bulb.svg"
+                alt="bulb2"
+              />
+              <p>Reduce time tracking admin by 75%</p>
+            </div>
+          </div>
+          <div className={styles.down74}>
+            <p>
+              20 people or more?{" "}
+              <span style={{ textDecoration: "underline" }}>
+                Get a personalized introduction to Timely
+              </span>{" "}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
