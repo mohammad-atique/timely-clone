@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const User = require("../models/user.model");
-const upload = require("../middlewares/uploads");
+const uploads = require("../middlewares/uploads");
 require("dotenv").config();
 const express = require("express");
 const uploadToCloudinary = require("../middlewares/cloudinary.upload");
@@ -18,7 +18,7 @@ const newtoken = (user) => {
 };
 
 router.post(
-  "/register",
+  "/register",uploads.single("image"),
   body("email")
     .isEmail()
     .custom(async (value) => {
@@ -48,7 +48,7 @@ router.post(
       }
       return true;
     }),
-  upload.single("profile"),
+  
 
   async function (req, res) {
     try {
@@ -59,7 +59,6 @@ router.post(
       }
       var locaFilePath = req.file.path;
       var result = await uploadToCloudinary(locaFilePath);
-
       const user = await User.create({
         email: req.body.email,
         fullName: req.body.fullName,
