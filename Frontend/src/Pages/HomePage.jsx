@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 import styles from "../CSS/HomePage.module.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -491,7 +492,16 @@ const HomePage = () => {
             </p>
           </div>
         </div>
+        <div className={styles.down8}>
+          <h1>Designed by vikings in Oslo, Norway 🇳🇴</h1>
+          <img
+            src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/6257f2528a39957b258af61b_ship.svg"
+            alt="Boatimg"
+          />
+        </div>
       </div>
+      {/* /////////Footer/////////////// */}
+      <Footer />
     </div>
   );
 };
