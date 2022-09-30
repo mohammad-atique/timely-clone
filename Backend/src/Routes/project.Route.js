@@ -16,10 +16,10 @@ projectController.get("/",async(req,res)=>{
 
 })
 
-projectController.get("/search?q=",async(req,res)=>{
+projectController.get("/search",async(req,res)=>{
 
-    const query=req.query
-    let data=await ProjectModel.find({projectName:{$regex:req.query}})
+    const query=req.query.q 
+    let data=await ProjectModel.find({projectName:{$regex:req.query.q}})
     if(!data){
         return res.status(500).json({msg:"Something went wrong, please try again."})
     }

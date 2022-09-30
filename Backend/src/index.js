@@ -9,15 +9,13 @@ app.use(express.urlencoded({ extended: false,limit :'50mb' }));
 app.use(express.json());
 
 
-
-
 app.get("/", (req,res)=> {
     res.send({
         "message":"Home Page"
     })
 })
 app.use("/auth",userRoute);
-app.use("/projects",authenticate,projectController)
+app.use("/projects",projectController)
 
 
 
