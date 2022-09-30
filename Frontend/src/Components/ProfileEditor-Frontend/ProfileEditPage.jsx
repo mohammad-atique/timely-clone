@@ -1,8 +1,9 @@
 import React from 'react'
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button, LinkBox } from '@chakra-ui/react'
 import { Stack, Grid, Heading, FormControl,
     FormLabel,Input, Radio, RadioGroup} from '@chakra-ui/react'
 import { useState } from 'react'
+import { Link } from 'react-bootstrap/lib/Navbar'
 
 
 const ProfileEditPage = () => {
@@ -12,6 +13,8 @@ const ProfileEditPage = () => {
     const [auth, setAuth] = useState('google');
     const [time, setTime] = useState('24');
     const [date, setDate] = useState('dmy');
+    const [profile, setProfile] = useState("");
+
 
   return (
     <Box p="30px">
@@ -81,10 +84,24 @@ const ProfileEditPage = () => {
                             </Box>
                         </Box>
 
+                        <Box>
+                            <Text><Link>Download and email my personal data</Link></Text>
+                        </Box>
+
+                        <Box>
+                            <Text><Link>Delete memories</Link></Text>
+                        </Box>
                     </Grid>
                 </Box>
                 <Box>
-            
+                    <Box>
+                        <Image height="100px" width="100px" src="https://www.gravatar.com/avatar/703cdd8e3cf3943cd35a09b2f5117aff?d=https%3A%2F%2Fd1vbcromo72rmd.cloudfront.net%2Fassets%2Fthumbs%2Fuser_large_retina-c403e04ad44c7d8b8c7904dc7e7c1893101f3672565370034edbe3dee9985509.jpg&s=200" />
+                        <Text>
+                            <Link color='#0099ff'>
+                                Add Photo
+                            </Link>
+                        </Text>
+                    </Box>
                 </Box>
             </Stack>
         </Box>
