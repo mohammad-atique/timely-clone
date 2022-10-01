@@ -3,6 +3,7 @@ import { Box, Button } from '@chakra-ui/react'
 import { Stack, Grid, Heading, FormControl,
     FormLabel,Input, Radio, RadioGroup} from '@chakra-ui/react'
 import { useState } from 'react'
+import Navbar from '../Navbar'
 
 
 const ProfileEditPage = () => {
@@ -14,7 +15,10 @@ const ProfileEditPage = () => {
     const [date, setDate] = useState('dmy');
 
   return (
+    <Box>
+    <Navbar />
     <Box p="30px">
+        
         <Heading p="7px" as='h1' size='2xl' fontWeight="">Edit Your Profile</Heading>
         <Box>
             <Stack direction={['column', 'column', 'row']} spacing='50px'>
@@ -91,6 +95,7 @@ const ProfileEditPage = () => {
         <Button colorScheme='whatsapp' size='md'>
             Update User
         </Button>
+    </Box>
     </Box>
   )
 }

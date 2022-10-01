@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const User = require("../models/user.model");
-const uploads = require("../middlewares/uploads");
+
 require("dotenv").config();
 const express = require("express");
-const uploadToCloudinary = require("../middlewares/cloudinary.upload");
+
 const router = express.Router();
 
 const newtoken = (user) => {
@@ -16,9 +16,8 @@ const newtoken = (user) => {
     { expiresIn: "12d" }
   );
 };
-
 router.post(
-  "/register",uploads.single("image"),
+  "/register",
   body("email")
     .isEmail()
     .custom(async (value) => {
@@ -57,12 +56,10 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).send({ errors: errors.array() });
       }
-      var locaFilePath = req.file.path;
-      var result = await uploadToCloudinary(locaFilePath);
+     
       const user = await User.create({
         email: req.body.email,
         fullName: req.body.fullName,
-        profilePic: result.url,
         password: req.body.password,
       });
       return res.status(201).send({

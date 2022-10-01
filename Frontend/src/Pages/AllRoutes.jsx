@@ -5,6 +5,7 @@ import HomePage from "./HomePage";
 import ProjectsPage from "./ProjectsPage";
 import Login from "./Login";
 import Signup from "./Signup";
+import ProfileEditPage from "../Components/ProfileEditor-Frontend/ProfileEditPage";
 
 
 const AllRoutes = () => {
@@ -15,6 +16,7 @@ const AllRoutes = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/tasks" element={<Tasks />} />
+      <Route path="/profileedit" element={<ProfileEditPage />} />
     </Routes>
   );
 };
