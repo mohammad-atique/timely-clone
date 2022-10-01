@@ -1,0 +1,7 @@
+.text-center{
+    text-align: center;
+    border: 1px solid black;
+    margin-left: 10%;
+    border-radius: 5px;
+    width:50%
+}
