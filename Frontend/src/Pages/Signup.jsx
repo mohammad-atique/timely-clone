@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import axios from "axios";
+import SignupNavbar from "../Components/SignupSec/SignupNavbar";
 const Signup = () => {
   const [data, setData] = useState({});
   const inputFile = useRef();
@@ -31,8 +32,9 @@ const Signup = () => {
 
   return (
     <div>
-      <h4>Signup</h4>
-      <form onSubmit={handleSubmit}>
+      {/* <h4>Signup</h4> */}
+      <SignupNavbar />
+      {/* <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Enter Full Name"
@@ -53,7 +55,7 @@ const Signup = () => {
         />
         <input type="file" ref={inputFile} />
         <input type={"submit"} value="register" />
-      </form>
+      </form> */}
     </div>
   );
 };
