@@ -13,7 +13,7 @@ const NewProject = () => {
   const[projectState,setProjectState]=useState({projectName:"",client:"",tag:""})
   const dispatch=useDispatch()
   const toast=useToast()
-  const { isAuth, token } = useSelector((store) => store.AuthReducer);
+  const { token } = useSelector((store) => store.AuthReducer);
   const handleCreate=()=>{
 
     dispatch(addProject({projectState,token}))

@@ -21,12 +21,10 @@ const getProfile = (token) => (dispatch) => {
       });
     });
 };
-export const getProjects=(params)=>(dispatch)=>{
-
-    
+export const getProjects=(token)=>(dispatch)=>{
 
         dispatch({type:types.GET_PROJECTS_REQUEST})
-        const token=localStorage.getItem("")
+        
         return axios.get("http://localhost:5000/projects",{
                         headers:{
                             "Authorization":`Bearer ${token}`
@@ -39,7 +37,7 @@ export const getProjects=(params)=>(dispatch)=>{
 export const addProject=(payload)=>(dispatch)=>{
 
         dispatch({type:types.ADD_PROJECT_REQUEST})
-        const token=localStorage.getItem("")
+        
         return axios.post("http://localhost:5000/projects/create",payload.projectState,{
             headers:{
                 "Authorization":`Bearer ${payload.token}`
@@ -52,23 +50,23 @@ export const addProject=(payload)=>(dispatch)=>{
 export const updateProject=(payload,id)=>(dispatch)=>{
 
         dispatch({type:types.UPDATE_PROJECT_REQUEST})
-        const token=localStorage.getItem("")
-        return axios.patch(`http://localhost:5000/projects/update/${id}`,payload,{
+        
+        return axios.patch(`http://localhost:5000/projects/update/${id}`,payload.updateState,{
             headers:{
-                "Authorization":`Bearer ${token}`
+                "Authorization":`Bearer ${payload.token}`
             }
         })
             .then((res)=>dispatch({type:types.UPDATE_PROJECT_SUCCESS}))
             .catch((err)=>dispatch({type:types.UPDATE_PROJECT_FAILURE}))
 
 }
-export const deleteProject=(id)=>(dispatch)=>{
+export const deleteProject=(payload)=>(dispatch)=>{
 
         dispatch({type:types.DELETE_PROJECT_REQUEST})
-        const token=localStorage.getItem("")
-        return axios.delete(`http://localhost:5000/projects/${id}`,{
+        
+        return axios.delete(`http://localhost:5000/projects/${payload.id}`,{
             headers:{
-                "Authorization":`Bearer ${token}`
+                "Authorization":`Bearer ${payload.token}`
             }
         })
             .then(()=>dispatch({type:types.DELETE_PROJECT_SUCCESS}))
