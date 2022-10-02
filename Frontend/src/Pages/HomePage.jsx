@@ -452,7 +452,10 @@ const HomePage = () => {
                 aria-describedby="basic-addon2"
               />
               <Button
-                style={{ color: "white", backgroundColor: "darkblue" }}
+                style={{
+                  color: "white",
+                  backgroundColor: "darkblue",
+                }}
                 variant="outline-secondary"
                 id="button-addon2"
               >
