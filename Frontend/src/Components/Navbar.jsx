@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "../CSS/Navbar.module.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import "../CSS/Navbar.css";
@@ -44,6 +43,7 @@ const Navbar = () => {
                 style={{
                   backgroundColor: "#7133ca",
                   border: "none",
+                  fontSize: "15px",
                 }}
                 variant="success"
                 id="dropdown-basic"
@@ -53,40 +53,40 @@ const Navbar = () => {
 
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiTimerFlashLine size={25} />
-                    <p className={styles.dropp}>Track time</p>
+                    <p>Track time</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <TbCalendarTime size={25} />
-                    <p className={styles.dropp}>Track projects</p>
+                    <p>Track projects</p>
                   </div>
                 </Dropdown.Item>
 
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiTeamLine size={25} />
-                    <p className={styles.dropp}>Track teams</p>
+                    <p>Track teams</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiBarChartHorizontalFill size={25} />
-                    <p className={styles.dropp}>Track plans</p>
+                    <p>Track plans</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiCropLine size={25} />
-                    <p className={styles.dropp}>Integration</p>
+                    <p>Integration</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiLock2Line size={25} />
-                    <p className={styles.dropp}> Our privacy policy</p>
+                    <p> Our privacy policy</p>
                   </div>
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -96,7 +96,11 @@ const Navbar = () => {
           <div className="mydiv">
             <Dropdown>
               <Dropdown.Toggle
-                style={{ backgroundColor: "#7133ca", border: "none" }}
+                style={{
+                  backgroundColor: "#7133ca",
+                  border: "none",
+                  fontSize: "15px",
+                }}
                 variant="success"
                 id="dropdown-basic"
               >
@@ -105,40 +109,40 @@ const Navbar = () => {
 
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiHotelLine size={25} />
-                    <p className={styles.dropp}>Consulting firms</p>
+                    <p>Consulting firms</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiComputerLine size={25} />
-                    <p className={styles.dropp}>Software firms</p>
+                    <p>Software firms</p>
                   </div>
                 </Dropdown.Item>
 
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiSurveyFill size={25} />
-                    <p className={styles.dropp}>Agencies</p>
+                    <p>Agencies</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiShape2Fill size={25} />
-                    <p className={styles.dropp}>Designers & creatives</p>
+                    <p>Designers & creatives</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <GoLaw size={25} />
-                    <p className={styles.dropp}>Lawyers</p>
+                    <p>Lawyers</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiBriefcase2Line size={25} />
-                    <p className={styles.dropp}> Accounts</p>
+                    <p> Accounts</p>
                   </div>
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -146,7 +150,11 @@ const Navbar = () => {
           </div>
           <div className="mydiv">
             <Button
-              style={{ backgroundColor: "#7133ca", border: "none" }}
+              style={{
+                backgroundColor: "#7133ca",
+                border: "none",
+                fontSize: "15px",
+              }}
               variant="primary"
             >
               Pricing
@@ -155,7 +163,11 @@ const Navbar = () => {
           <div className="mydiv">
             <Dropdown>
               <Dropdown.Toggle
-                style={{ backgroundColor: "#7133ca", border: "none" }}
+                style={{
+                  backgroundColor: "#7133ca",
+                  border: "none",
+                  fontSize: "15px",
+                }}
                 variant="success"
                 id="dropdown-basic"
               >
@@ -164,40 +176,40 @@ const Navbar = () => {
 
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <FaBlogger size={25} />
-                    <p className={styles.dropp}>Blog</p>
+                    <p>Blog</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiBriefcase5Line size={25} />
-                    <p className={styles.dropp}>Case study</p>
+                    <p>Case study</p>
                   </div>
                 </Dropdown.Item>
 
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <FaPodcast size={25} />
-                    <p className={styles.dropp}>Podcast</p>
+                    <p>Podcast</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <GiBookshelf size={25} />
-                    <p className={styles.dropp}>Books</p>
+                    <p>Books</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiWebcamLine size={25} />
-                    <p className={styles.dropp}>Webinars</p>
+                    <p>Webinars</p>
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
-                  <div className={styles.droplogo}>
+                  <div>
                     <RiFileSettingsLine size={25} />
-                    <p className={styles.dropp}> Support</p>
+                    <p> Support</p>
                   </div>
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -205,14 +217,21 @@ const Navbar = () => {
           </div>
           <div className="mydiv">
             <Button
-              style={{ backgroundColor: "#7133ca", border: "none" }}
+              style={{
+                backgroundColor: "#7133ca",
+                border: "none",
+                fontSize: "15px",
+              }}
               variant="primary"
             >
-              <div className={styles.droplogo}>Log in </div>
+              <div>Log in </div>
             </Button>{" "}
           </div>
           <div className="mydiv">
-            <Button className={styles.trialbtn} variant="primary">
+            <Button
+              style={{ backgroundColor: "darkblue", border: "none" }}
+              variant="primary"
+            >
               Start 14-day free trial
             </Button>{" "}
           </div>

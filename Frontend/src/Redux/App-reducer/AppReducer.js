@@ -1,9 +1,12 @@
 import * as types from "./actionTypes";
 
+
 const appData = {
   userData:{},
   isLoading:false,
   isError:false,
+  projectsData:[],
+  name:""
 };
 
 export const AppReducer = (state = appData, action) => {
@@ -27,7 +30,15 @@ export const AppReducer = (state = appData, action) => {
         isError: true,
       
       };
+      case types.GET_PROJECTS_REQUEST: return{...state,isLoading:true}
+
+    case types.GET_PROJECTS_SUCCESSFULL: return{...state,isLoading:false,projectsData:[...payload.data],name:payload.name}
+
+    case types.GET_PROJECTS_FAILURE: return{...state,isError:true}
+
+
     default:
-      return state;
+      return oldState;
+      
   }
 };

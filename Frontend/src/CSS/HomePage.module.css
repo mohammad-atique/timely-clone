@@ -16,7 +16,7 @@
   padding-right: 60px;
 }
 .topone1 {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   color: white;
 }
@@ -38,6 +38,7 @@
   padding-right: 70px;
   padding-top: 15px;
   padding-bottom: 15px;
+  font-size: 14px;
 }
 .topone4 {
   height: 50px;
@@ -49,7 +50,7 @@
 }
 .topone51 {
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 15px;
 }
 /* //////////midsectionhomePage///////////// */
 .midsection {
@@ -142,6 +143,7 @@
   margin-left: 60px;
   margin-right: 60px;
   margin-top: 40px;
+  font-size: 15px;
 }
 .logogrid {
   display: grid;

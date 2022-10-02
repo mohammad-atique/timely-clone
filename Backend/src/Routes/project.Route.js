@@ -15,6 +15,17 @@ projectController.get("/",async(req,res)=>{
     return res.status(200).json({msg:"Proejcts fetched",name:name,projects:projects})
 
 })
+projectController.get("/:id",async(req,res)=>{
+    
+    const id=req.params.id
+    const project=await ProjectModel.findOne({_id:id})
+    if(!project){
+        return res.status(404).json({msg:"Something went wrong"})
+    }
+     
+    return res.status(200).json({msg:"Project Created",project:project})
+
+})
 
 projectController.get("/search",async(req,res)=>{
 
@@ -30,14 +41,15 @@ projectController.get("/search",async(req,res)=>{
 
 projectController.post("/create",async(req,res)=>{
 
-    const{userId,projectName,client,tag}=req.body
+    const{projectName,client,tag}=req.body
+    const{_id}=req.user 
     const checkName=ProjectModel.findOne({projectName:projectName})
     if(!checkName){
-        if(!userId||!projectName||!client||!tag){
+        if(!_id||!projectName||!client||!tag){
             return res.status(400).json({msg:"Please fill all the input fields"})
         }
-    
-        const project=await new ProjectModel({userId:userId,projectName:projectName,client:client,tag:tag})
+        const newPayload={projectName:projectName,client:client,tag:tag,userId:_id}
+        const project=await new ProjectModel(newPayload)
     
         try{
             project.save()
