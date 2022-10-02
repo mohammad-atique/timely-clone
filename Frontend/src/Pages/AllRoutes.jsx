@@ -7,6 +7,8 @@ import Login from "./Login";
 import Signup from "./Signup";
 import CreateProjectPage from "./CreateProjectPage";
 import SingleProjectPage from "./SingleProjectPage";
+import ProfileEditPage from "../Components/ProfileEditor-Frontend/ProfileEditPage";
+
 
 
 const AllRoutes = () => {
@@ -19,6 +21,7 @@ const AllRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/tasks" element={<Tasks />} />
       <Route path="/project/:id" element={<SingleProjectPage/>}/>
+      <Route path="/profileedit" element={<ProfileEditPage />} />
     </Routes>
   );
 };

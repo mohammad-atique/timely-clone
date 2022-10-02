@@ -3,6 +3,8 @@ const cors = require('cors');
 const { projectController } = require("./routes/project.Route");
 const userRoute = require("./routes/auth.routes");
 const authenticate = require("./middlewares/authMiddleware")
+const profileRouter = require("./Routes/editProfile.route")
+const hoursRouter = require("./Routes/hours.route")
 const app = express();
 
 app.use(cors())
@@ -16,8 +18,9 @@ app.get("/", (req,res)=> {
 })
 
 app.use("/auth",userRoute);
-
-app.use("/projects",projectController)
+app.use("/profile",authenticate,profileRouter)
+app.use("/hours",authenticate,hoursRouter)
+app.use("/projects",authenticate,projectController)
 
 
 

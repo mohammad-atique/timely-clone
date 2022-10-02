@@ -1,246 +1,265 @@
-
-import React, { useState } from "react";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import format from "date-fns/format";
-import parse from "date-fns/parse";
-import startOfWeek from "date-fns/startOfWeek";
-import getDay from "date-fns/getDay";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { FaUserCircle } from "react-icons/fa";
-import { Box, Flex, Text, Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Select, Textarea, useToast } from "@chakra-ui/react";
-//Init
+import * as React from 'react';
+import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, ResourcesDirective, ResourceDirective } from '@syncfusion/ej2-react-schedule';
+import { DataManager, UrlAdaptor } from "@syncfusion/ej2-data";
+import { extend, createElement } from '@syncfusion/ej2-base';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { useState, useEffect } from 'react';
+import { Box, Flex, Text } from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react'
 
 
-const locales = {
-  "en-In": require("date-fns/locale/en-IN"),
-};
-const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-  locales,
-});
-
-const events = [
-  {
-    title: "Big Meeting",
-    allDay: true,
-    start: new Date(2022, 9, 26),
-    end: new Date(2022, 9, 26),
-  },
-  {
-    title: "Vacation",
-    allDay: true,
-    start: new Date(2022, 12, 25),
-    end: new Date(2023, 1, 2),
-  },
-  {
-    title: "Conference",
-    allDay: true,
-    start: new Date(2022, 10, 1),
-    end: new Date(2022, 10, 1),
-  },
+// const data = [
+//   {
+//     Id: 2,
+//     Subject: 'Meeting',
+//     StartTime: new Date(2018, 1, 15, 10, 0),
+//     EndTime: new Date(2018, 1, 15, 12, 30),
+//     IsAllDay: false,
+//     Status: 'Completed',
+//     Priority: 'High'
+//   },
+//   {
+//     Id: 2,
+//     Subject: 'Meeting',
+//     StartTime: new Date(2018, 1, 15, 10, 0),
+//     EndTime: new Date(2018, 1, 15, 12, 30),
+//     IsAllDay: false,
+//     Status: 'Completed',
+//     Priority: 'High'
+//   }]
+const ownerData = [
+  { OwnerText: 'others', EventsType: "others", OwnerColor: 'grey' },
+  { OwnerText: 'Public Event', EventsType: "public-event", OwnerColor: 'green' },
+  { OwnerText: 'Commercial Event', EventsType: "commercial-event", OwnerColor: 'red' },
+  { OwnerText: 'Family Event', EventsType: "family-event", OwnerColor: 'yellow' }
 ];
+
+
+
 const Tasks = () => {
+  const [datas, setdata] = useState([])
+  const [profiles, setProfile] = useState([])
   const toast = useToast();
-  const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
-  const [allEvents, setAllEvents] = useState(events);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [sy, setsy] = useState("")
-  const [sd, setsd] = useState("")
-  const [sm, setsm] = useState("")
-  const [ey, setey] = useState("")
-  const [ed, seted] = useState("")
-  const [em, setem] = useState("")
-  const [selectedDate, setselectedDate] = useState("");
-  const [endselectedDate, setendselectedDate] = useState("");
-  const [title,settitle]= useState("");
-  console.log(allEvents)
-  // console.log(ed,em,ey)
 
-  let y = ""
-  let m = ""
-  let d = ""
-  // console.log(newEvent)
+  console.log(datas)
 
-  // console.log(ey,ed,em)
-
-  const handleAddEvent = async() => {
-    await setNewEvent({ title: title,allDay: true, start: new Date(sy,sm,sd), end: new Date(ey,em,ed) });
-    console.log(newEvent)
-    setAllEvents([...allEvents, newEvent]);
-  };
-
-
-  const handleEvent = () => {
-    setNewEvent({ title: title, start: new Date(sy,sm,sd), end: new Date(ey,em,ed) });
-  };
-  const handleselect = (value) => {
-    console.log(value)
-  }
-
-// Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+  // ..............................................CRUD............................................................
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzM4OGZhYTU3YTYyYjBmYzFhODI5YzgiLCJpYXQiOjE2NjQ2NTcxMzN9.1QYt8c-AyQ04kWBsb32EWCO7keL-IqJSdjOtXIGVY5w"
+  const username = "robin"
   
-  const robin=(date)=>{
-    let a = JSON.stringify(date)
-    let sub =  a.substring(1, 11)
-    let b = sub.split("-")
-     y = parseInt(b[0])
-    if(b[1][0]==0){
-       m = parseInt(b[1][1])
-    }
-    else
-    { m = parseInt(b[1])}
-    if(b[2][0]==0){
-       d = parseInt(b[2][1])
-    }
-    else
-    { d = parseInt(b[2])}
-    setsy(y)
-    setsm(m-1)
-    setsd(d+1)
-  }
+  const getData = () => {
+    fetch("http://localhost:8080/tasks", {
+        method: "GET",
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+        .then((res) => res.json())
+        .then((res) => setdata(res))
+        .catch((err) => console.log(err))
+}
 
 
-  const robins=(date)=>{
-    let a = JSON.stringify(date)
-    let sub =  a.substring(1, 11)
-    let b = sub.split("-")
-     y = parseInt(b[0])
-    if(b[1][0]==0){
-       m = parseInt(b[1][1])
-    }
-    else
-    { m = parseInt(b[1])}
-    if(b[2][0]==0){
-       d = parseInt(b[2][1])
-    }
-    else
-    { d = parseInt(b[2])}
-    setey(y)
-    setem(m-1)
-    seted(d+1)
+const posttask = (data) => {
+  // console.log(username)
+  if(username=="" || username==null)
+  {
+      toast({
+          title: 'Please Login first..!!',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
   }
+
+  else{fetch('http://localhost:8080/tasks/create', {
+      method: 'POST',
+      headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( data )
+  })
+      .then((res) => toast({
+          title: 'Task Added Successfully',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        }))
+      .catch((err) => console.log(err))}
+      
+}
+
+
+const deletetask = (did) => {
+console.log(did)
+  fetch(`http://localhost:8080/tasks/delete/${did}`, {
+      method: 'DELETE',
+      headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+
+  })
+      .then((res) => toast({
+          title: 'Task deleted Successfully',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        }))
+
+}
+
+const edittask = (data,did) => {
+console.log(did)
+
+  fetch(`http://localhost:8080/tasks/edit/${did}`, {
+      method: 'PATCH',
+      headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ data })
+
+  })
+  .then((res) => toast({
+      title: 'Task Edited..',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    }))
+}
+useEffect(() => {
+  getData()
+}, [])
+
+//.................................................Frontend...................................................................................
+
+  const dataManger = new DataManager({
+    url: "http://localhost:54738/Home/LoadData", 
+    crudUrl: "http://localhost:54738/Home/UpdateData",
+    crossDomain: true,
+    adaptor: new UrlAdaptor()
+  });
+
+  function onPopupClose(args) {
+    // console.log(args.data)
+    var datacard = args.data
+    if (datacard) {
+      let subject = datacard.Subject
+      let StartTime = datacard.StartTime
+      let EndTime = datacard.EndTime
+      let IsAllDay = datacard.IsAllDay
+      let EventType = datacard.EventsType
+      // console.log(datas.length)
+      
+
+      if(ed==true)
+      {
+        var robin = {
+          Id: id,
+          Subject: subject,
+          StartTime: StartTime,
+          EndTime: EndTime,
+          IsAllDay: IsAllDay,
+          EventsType: EventType,
+          Status: 'Completed',
+          Priority: 'High'
+        }
+        edittask(robin,id)
+        ed=false
+      }
+      if(pos==true)
+      {
+        var robin = {
+          Id: datas.length + 1,
+          Subject: subject,
+          StartTime: StartTime,
+          EndTime: EndTime,
+          IsAllDay: IsAllDay,
+          EventsType: EventType,
+          Status: 'Completed',
+          Priority: 'High'
+        }
+        posttask(robin)
+        pos=false
+      }
+      if(dt==true)
+      {
+        
+        deletetask(id)
+        dt=false
+      }
+    }
+  }
+  var ed = false
+  var pos = false
+  var dt = false
+  var id
+  function onPopupOpen(args) {
+    // console.log(args.data)
+    console.log(args.data.Id)
+    if (args.type == "DeleteAlert") {
+        dt = true
+        console.log("delete")
+        id=args.data.Id
+
+    }
+    if (args.type == "Editor") {
+      if (args.data.Id) {
+        console.log("edit")
+        id=args.data.Id
+        ed=true
+        pos = false
+      }
+      else {
+        pos = true
+        ed = false
+        console.log("post")
+      }
+    }
+  }
+
+  
   return (
-    <div>
+    <Flex width="100%">
+      <Box width="75%">
+        <ScheduleComponent
+          height='550px'
+          selectedDate={new Date()}
+          showQuickInfo={false}
+          popupOpen={(args) => onPopupOpen(args)}
+          currentView="Week"
+          popupClose={(args) => onPopupClose(args)}
+          eventSettings={{
+            dataSource: datas,
+            fields: {
+              id: "Id",
+              subject: { name: "Subject" },
+              startTime: { name: "StartTime" },
+              endTime: { name: "EndTime" }
+            }
+          }}>
+          <ResourcesDirective>
+            <ResourceDirective field='EventsType' title='Event Type' name='Owners' allowMultiple={false} dataSource={ownerData} textField='OwnerText' idField='EventsType' colorField='OwnerColor'>
+            </ResourceDirective>
+          </ResourcesDirective>
+          <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+        </ScheduleComponent></Box>
+      <Box width="15%" pt="10vh">
 
-      <Box w="82.5%" margin={"auto"} mt="30px">
-        <Button
-          variant="solid"
-          colorScheme="messenger"
-          borderRadius="3px"
-          size="md"
-          position="absolute"
-          right="21%"
-          mt="-2px"
-          onClick={onOpen}
-        >
-          Create Post
-        </Button>
-        <Modal size="2xl" isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader borderBottom="1px solid grey">
-              <Flex
-                alignItems="center"
-                ml="5px"
-                mr="5px"
-                justifyContent="space-between"
-              >
-                <Text fontSize="sm">Campaign</Text>
-                <Box w="280px">
-                  <Select borderRadius="3px" placeholder="No Campaign" />
-                </Box>
-              </Flex>
-            </ModalHeader>
-            <ModalBody>
-              <FaUserCircle icon="fa-duotone" size="26px" swapopacity="true" />
-              <Textarea
-                h="250px"
-                mt="10px"
-                onChange={(e) => settitle(e.target.value)}
-                placeholder="What would you like to share?"
-              />
-              
-              <Flex>
-              <Box><Text>Start Date</Text>
-                <DatePicker
-                // // border={"1px solid balck"}
-                selected={selectedDate}
-                onChange={(date) => {setselectedDate(date);robin(date)}}
-                placeholderText={'dd/mm/yyyy'}
-                filterDate={date => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
-                showYearDropdown // year show and scrolldown alos
-                scrollableYearDropdown
-              /></Box>
-              <Box><Text>End Date</Text>
-              <DatePicker
-                selected={endselectedDate}
-                onChange={(date) => {setendselectedDate(date);robins(date);}}
-                placeholderText={'dd/mm/yyyy'}
-                filterDate={date => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
-                showYearDropdown // year show and scrolldown alos
-                scrollableYearDropdown
-              /></Box>
-              </Flex>
-            </ModalBody>
-            <ModalFooter>
-              <Flex gap="10px">
-                <Button
-                  colorScheme="gray"
-                  borderRadius="3px"
-                  onClick={() => {
-                    handleAddEvent();
-                    toast({
-                      description: "Great! Your draft is saved.",
-                      status: "success",
-                      duration: 3000,
-                      isClosable: true,
-                    });
-                    onClose();
-                  }}
-                >
-                  Save as Draft
-                </Button>
-                <Button
-                  colorScheme="blue"
-                  borderRadius="3px"
-                  onClick={() => {
-                    handleAddEvent();
-                    toast({
-                      description:
-                        "Great! The post has been added to your queue.",
-                      status: "success",
-                      duration: 3000,
-                      isClosable: true,
-                    });
-                    onClose();
-                  }}
-                >
-                  Add to Queue
-                </Button>
-              </Flex>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-        <Calendar
-          localizer={localizer}
-          events={allEvents}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: "83vh" }}
-          defaultView='week'
-          onSelectSlot={(slotInfo) => {
-            slotInfo.style = { backgroud: "balck" }
-          }}
-          selectable
-          popup={true}
-        />
+        <Flex width="100%" ml="10px" height="3vh"><Box width="10%" borderRadius='10px' bg="green"></Box><Text fontSize={"14px"} ml="7px">Public Event</Text></Flex><br />
+        <Flex width="100%" ml="10px" height="3vh"><Box width="10%" borderRadius='10px' bg="red"></Box><Text fontSize={"14px"} ml="7px">Commercial Event</Text></Flex><br />
+        <Flex width="100%" ml="10px" height="3vh"><Box width="10%" borderRadius='10px' bg="yellow"></Box><Text fontSize={"14px"} ml="7px">Family Event</Text></Flex><br />
+        <Flex width="100%" ml="10px" height="3vh"><Box width="10%" borderRadius='10px' bg="grey"></Box><Text fontSize={"14px"} ml="7px">Other Events</Text></Flex>
       </Box>
-    </div>
-  );
-};
-export default Tasks;
+
+
+    </Flex>
+  )
+}
+
+export default Tasks
