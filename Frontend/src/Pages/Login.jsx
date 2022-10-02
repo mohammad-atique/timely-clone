@@ -123,7 +123,7 @@ export default function Signup() {
       });
       // alert("Your Account Sucessfully Created");
       setTimeout(() => {
-        navigate("/");
+        navigate("/profileedit");
       }, 2000);
     }
   }, [successfullyCreated]);

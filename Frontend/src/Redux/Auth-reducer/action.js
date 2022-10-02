@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as types from "./actionTypes";
-console.log(types);
+
 
 const signInFunc = (data) => (dispatch) => {
   dispatch({ type: types.SIGNIN_REQUEST });
@@ -8,12 +8,12 @@ const signInFunc = (data) => (dispatch) => {
   axios
     .post("http://localhost:5000/auth/login", data)
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       //   dispatch({ type: SIGNIN_SUCCESS, payload: response.data.token })
       dispatch({ type: types.SIGNIN_SUCCESS, payload: response.data });
     })
     .catch((e) => {
-      console.log(e);
+      // console.log(e);
       dispatch({
         type: types.SIGNIN_FAILURE,
         payload: e.response.data?.message

@@ -7,6 +7,20 @@ const jwt = require("jsonwebtoken");
 const uploadToCloudinary = require("../middlewares/cloudinary.upload");
 const router = express.Router();
 
+router.get("/",async(req,res)=>{
+  try{
+      const userId = req.user._id
+      // console.log(userId)
+      const user=await User.findOne({_id:userId})
+      return res.status(200).json({msg:"user Fetched",user:user})
+      
+  
+  }catch(err){
+      return res.status(404).json({msg:err.message})
+  }
+
+})
+
 router.patch("/edit",uploads.single("image"),async(req,res)=>{
     try {
         const user1 = await User.findOne({ email: req.user.email });
