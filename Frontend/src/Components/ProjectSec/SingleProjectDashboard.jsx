@@ -5,6 +5,7 @@ import {BiSearchAlt2} from "react-icons/bi"
 import randomColorRGB from 'random-color-rgb'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import EditProject from './EditProject'
+import { Link } from 'react-router-dom'
 
 const SingleProjectDashboard = ({projectName="Project Name"}) => {
 
@@ -18,7 +19,7 @@ const SingleProjectDashboard = ({projectName="Project Name"}) => {
     <Box border={"1px solid black"} bgColor={colorState} height="150px">
         <Flex justifyContent={"space-between"} mt="3%">
             <Box ml={"5%"}>
-                <Button> <Icon as={AiOutlineArrowLeft} mr="7%"/><Text>Projects</Text></Button>
+                <Button> <Icon as={AiOutlineArrowLeft} mr="7%"/><Text><Link to = "/projects"> Projects</Link></Text></Button>
             </Box>
             <Flex justifyContent={"space-around"} width={"35%"}>
                 <Box>

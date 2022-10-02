@@ -1,26 +1,25 @@
 import axios from "axios";
 import * as types from "./actionTypes";
 
-
-
 const getProfile = (token) => (dispatch) => {
   dispatch({ type: types.GET_PROFILE_REQUEST });
   axios
-    .get("http://localhost:5000/profile",{
-                headers: { 'Authorization': 'Bearer ' + token},
-              })
+    .get("http://localhost:5000/profile", {
+      headers: { Authorization: "Bearer " + token },
+    })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       //   dispatch({ type: SIGNIN_SUCCESS, payload: response.data.token })
       dispatch({ type: types.GET_PROFILE_SUCCESS, payload: response.data });
     })
     .catch((e) => {
-      console.log(e);
+      // console.log(e);
       dispatch({
-        type: types.GET_PROFILE_FAILURE
+        type: types.GET_PROFILE_FAILURE,
       });
     });
 };
+
 export const getProjects=(token)=>(dispatch)=>{
 
         dispatch({type:types.GET_PROJECTS_REQUEST})
@@ -75,11 +74,32 @@ export const deleteProject=(payload)=>(dispatch)=>{
 }
 
 
-// .patch("http://localhost:5000/profile/edit", formData, {
-//         headers: { "Content-Type": "multipart/form-data" ,'Authorization': 'Bearer ' + token},
-//       })
-//       .then((r) => console.log(r.data))
-//       .catch((e) => console.log(e.error));
+const updateProfile = (payload) => (dispatch) => {
+  // console.log("payload==>", payload);
+  dispatch({ type: types.UPDATE_PROFILE_REQUEST });
+  return axios
+    .patch("http://localhost:5000/profile/edit", payload.formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + payload.token,
+      },
+    })
+    .then((response) => {
+      // console.log("update res -->", response.data);
+      //   dispatch({ type: SIGNIN_SUCCESS, payload: response.data.token })
+      return dispatch({ type: types.UPDATE_PROFILE_SUCCESS });
+    })
+    .catch((e) => {
+      // console.log("error",e);
+      return dispatch({
+        type: types.UPDATE_PROFILE_FAILURE,
+      });
+    });
+};
 
 
-export { getProfile };
+
+
+
+
+export { getProfile, updateProfile };

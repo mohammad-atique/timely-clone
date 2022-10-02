@@ -9,19 +9,22 @@ import { useNavigate } from 'react-router-dom'
 import AllProjects from './AllProjects'
 
 
+
 const DashboardNavbar = () => {
 
           const navigate=useNavigate()
    
   return (
-       <Box width={"100%"} height="110px"  backgroundColor="#f2f4f8">
+       <Box  height="110px"  backgroundColor="#f2f4f8">
             <Flex justifyContent={"space-between"} mb="0.5%"  >
               <Text fontSize={"2xl"} color="#343a3f" mt="2%" ml={"3%"} fontWeight="semibold">Projects</Text>
               <Flex width={"48%"} justifyContent="space-around" mt="2%">
                 <Input width={"200px"} bgColor="white" height={"30px"} borderRadius="5px" mt={"1%"}  placeholder='Client or project'/>
                 <Button bgColor={"gray.300"} height={"30px"} mt={"1%"}><Icon as={BsFillPersonFill}/> Manage Clients</Button>
                 <ImportDropdown/>
+
                 <Button colorScheme={"facebook"} onClick={()=>navigate("/projects/create")} height={"30px"} mt={"1%"} >+ New project</Button>
+
               </Flex>
             </Flex>  
 
