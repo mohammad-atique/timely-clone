@@ -1,6 +1,6 @@
 
 import "./App.css";
-import Tasks from "./Components/Task";
+
 
 import AllRoutes from "./Pages/AllRoutes";
 
