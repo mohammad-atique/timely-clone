@@ -40,9 +40,9 @@ export const addProject=(payload)=>(dispatch)=>{
 
         dispatch({type:types.ADD_PROJECT_REQUEST})
         const token=localStorage.getItem("")
-        return axios.post("http://localhost:5000/projects/create",payload,{
+        return axios.post("http://localhost:5000/projects/create",payload.projectState,{
             headers:{
-                "Authorization":`Bearer ${token}`
+                "Authorization":`Bearer ${payload.token}`
             }
         })
             .then((res)=>dispatch({type:types.ADD_PROJECT_SUCCESSFULL}))

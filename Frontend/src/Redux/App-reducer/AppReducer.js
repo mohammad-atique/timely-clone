@@ -38,7 +38,7 @@ export const AppReducer = (state = appData, action) => {
 
 
     default:
-      return oldState;
+      return state;
       
   }
 };

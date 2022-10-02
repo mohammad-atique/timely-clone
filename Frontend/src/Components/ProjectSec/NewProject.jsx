@@ -4,7 +4,7 @@ import { useState } from 'react'
 import {AiOutlineArrowLeft} from"react-icons/ai"
 import PeopleAndRates from './PeopleAndRates'
 import ProjectDetailsForm from './ProjectDetailsForm'
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { addProject } from '../../Redux/App-reducer/action'
 import { ADD_PROJECT_FAILURE, ADD_PROJECT_SUCCESSFULL } from '../../Redux/App-reducer/actionTypes'
 
@@ -13,10 +13,10 @@ const NewProject = () => {
   const[projectState,setProjectState]=useState({projectName:"",client:"",tag:""})
   const dispatch=useDispatch()
   const toast=useToast()
-
+  const { isAuth, token } = useSelector((store) => store.AuthReducer);
   const handleCreate=()=>{
 
-    dispatch(addProject(projectState))
+    dispatch(addProject({projectState,token}))
     .then((res)=>{
       if(res.type===ADD_PROJECT_SUCCESSFULL){
         toast({
