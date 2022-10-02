@@ -15,6 +15,17 @@ projectController.get("/",async(req,res)=>{
     return res.status(200).json({msg:"Proejcts fetched",name:name,projects:projects})
 
 })
+projectController.get("/:id",async(req,res)=>{
+    
+    const id=req.params.id
+    const project=await ProjectModel.findOne({_id:id})
+    if(!project){
+        return res.status(404).json({msg:"Something went wrong"})
+    }
+     
+    return res.status(200).json({msg:"Project Created",project:project})
+
+})
 
 projectController.get("/search",async(req,res)=>{
 

@@ -1,7 +1,7 @@
 import { Box, Checkbox, Flex, FormLabel, Input, Text } from '@chakra-ui/react'
 import React from 'react'
 
-const ProjectDetailsForm = () => {
+const ProjectDetailsForm = ({handleChange}) => {
   return (
         <>
             <Flex border={"1px solid gray"} mt="12%" width={"76%"} ml="5%">
@@ -15,14 +15,14 @@ const ProjectDetailsForm = () => {
                     <FormLabel fontSize={"small"} fontWeight={"semibold"}>
                             PROJECT NAME
                     </FormLabel>
-                    <Input placeholder='Project name'/>
+                    <Input name='projectName' onChange={handleChange} placeholder='Project name'/>
                     </Box>
                     <Flex mt={"3%"}>
                     <Box>
                     <FormLabel  fontSize={"small"} fontWeight={"semibold"}>
                             CLIENT 
                     </FormLabel>
-                    <Input placeholder='Client name'/>
+                    <Input name='client' onChange={handleChange} placeholder='Client name'/>
                     </Box>
                     <Text width={"50%"} fontSize={"small"} mt="13%" ml={"2%"} fontWeight="semibold">Create new client</Text>
                     </Flex>
