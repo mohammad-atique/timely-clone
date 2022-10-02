@@ -6,7 +6,7 @@ const LatestActivities = () => {
         <Box mt={"7%"}>
             <Text mb={"2%"}>Latest Activities</Text>
             <Box border={"1px solid gray"} width="80%"  height="250px">
-
+                
             </Box>
         </Box>
   )
