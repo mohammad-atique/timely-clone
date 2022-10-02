@@ -22,6 +22,7 @@ import { GoLaw } from "react-icons/go";
 import { FaBlogger, FaPodcast } from "react-icons/fa";
 import { TbCalendarTime } from "react-icons/tb";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isopen, setIsopen] = useState(false);
@@ -30,11 +31,13 @@ const Navbar = () => {
     <div className="primenavbar">
       <div className="navbar">
         <div>
+          <Link to="/">
           <img
             className="logoimg"
             src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/6257f2528a39955aef8af720_timely-new-logo.svg"
             alt="Timely"
           />
+          </Link>
         </div>
         <div className={`navitems ${isopen && `open`}`}>
           <div className="mydiv">
@@ -59,10 +62,13 @@ const Navbar = () => {
                   </div>
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-1">
+                <Link to={"/projects"}>
                   <div>
                     <TbCalendarTime size={25} />
                     <p>Track projects</p>
                   </div>
+                  </Link>
+                  
                 </Dropdown.Item>
 
                 <Dropdown.Item href="#/action-1">
@@ -224,7 +230,8 @@ const Navbar = () => {
               }}
               variant="primary"
             >
-              <div>Log in </div>
+              <Link to="login"><div>Log in </div></Link>
+              
             </Button>{" "}
           </div>
           <div className="mydiv">
@@ -232,7 +239,9 @@ const Navbar = () => {
               style={{ backgroundColor: "darkblue", border: "none" }}
               variant="primary"
             >
+              <Link to="/signup">
               Start 14-day free trial
+              </Link>
             </Button>{" "}
           </div>
           <div className="mydiv">
