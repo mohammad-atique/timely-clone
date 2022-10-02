@@ -1,5 +1,6 @@
 import React from "react";
 import { BsDot, BsFacebook, BsTwitter } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import styles from "../CSS/Footer.module.css";
 
 const Footer = () => {
@@ -131,11 +132,11 @@ const Footer = () => {
         </div>
         <div style={{ display: "flex" }}>
           <BsDot size={20} />
-          <p style={{ textDecoration: "underline" }}>Login</p>
+          <p style={{ textDecoration: "underline" }}><Link ro="/login">Login</Link></p>
         </div>
         <div style={{ display: "flex" }}>
           <BsDot size={20} />
-          <p style={{ textDecoration: "underline" }}>Start 14-day trial</p>
+          <p style={{ textDecoration: "underline" }}><Link to="/signup">Start 14-day trial</Link></p>
         </div>
         <div style={{ display: "flex" }}>
           <BsDot size={20} />

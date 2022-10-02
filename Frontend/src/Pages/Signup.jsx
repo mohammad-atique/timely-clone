@@ -1,79 +1,9 @@
-// import React, { useState } from "react";
-// import { useRef } from "react";
-// import axios from "axios";
-// import SignupNavbar from "../Components/SignupSec/SignupNavbar";
-// var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYzMzdkYzE4YjM2ZGJhMjFjNjI0NGU5ZCIsImVtYWlsIjoiYXRpcXVlQG1hc2FpLmNvbSIsImZ1bGxOYW1lIjoiTW9oYW1tYWQgQXRpcXVlIiwicGFzc3dvcmQiOiIkMmIkMTAkbnJqVWY5Y1VJLjJMTmRncVVjdlBWdUtUaXJ6Lk0uZVJ4cU02azVIM3FRUEt6d3JwQUNBM3UiLCJjcmVhdGVkQXQiOiIyMDIyLTEwLTAxVDA2OjIwOjA4LjM4MVoiLCJ1cGRhdGVkQXQiOiIyMDIyLTEwLTAxVDA2OjIwOjA4LjM4MVoifSwiaWF0IjoxNjY0NjA1Mjc3LCJleHAiOjE2NjU2NDIwNzd9.QXVhVFGVOAVBgQCR7yxNCT3oOanmLTW-xiW9v3jQSSw";
-// const Signup = () => {
-//   const [data, setData] = useState({});
-//   const inputFile = useRef();
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-
-//     setData({
-//       ...data,
-//       [name]: value,
-//     });
-//   };
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     const formData = new FormData();
-//     // formData.append("fullName", data.fullName);
-//     // formData.append("email", data.email);
-//     // formData.append("password", data.password);
-
-//     formData.append("image", inputFile.current.files[0]);
-//     axios
-//       .patch("http://localhost:5000/profile/edit", formData, {
-//         headers: { "Content-Type": "multipart/form-data" ,'Authorization': 'Bearer ' + token},
-//       })
-//       .then((r) => console.log(r.data))
-//       .catch((e) => console.log(e.error));
-//   };
-
-//   return (
-//     <div>
-//       {/* <h4>Signup</h4> */}
-//       <SignupNavbar />
-//       <form onSubmit={handleSubmit}>
-//         {/* <input
-//           type="text"
-//           placeholder="Enter Full Name"
-//           name="fullName"
-//           onChange={handleChange}
-//         />
-//         <input
-//           type="email"
-//           placeholder="Enter Email"
-//           name="email"
-//           onChange={handleChange}
-//         />
-//         <input
-//           type="password"
-//           placeholder="Enter Password"
-//           name="password"
-//           onChange={handleChange}
-//         /> */}
-//         <input type="file" ref={inputFile} />
-//         <input type={"submit"} value="register" />
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Signup;
-
 import {
   Box,
   Input,
   Text,
-  FormControl,
   FormLabel,
-  FormHelperText,
-  Checkbox,
   Button,
-  Alert,
-  Image,
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
@@ -82,7 +12,7 @@ import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook } from "react-icons/ai";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signInFunc, signUpFunc } from "../Redux/Auth-reducer/action";
+import { signUpFunc } from "../Redux/Auth-reducer/action";
 import { Link, useNavigate } from "react-router-dom";
 import LeftSec from "../Components/SignupSec/LeftSec";
 import SignupNavbar from "../Components/SignupSec/SignupNavbar";

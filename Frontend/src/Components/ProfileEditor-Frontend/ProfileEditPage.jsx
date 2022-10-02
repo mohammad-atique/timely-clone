@@ -16,7 +16,7 @@ import FileProf from "./FileProf";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getProfile } from "../../Redux/App-reducer/action";
+import { getProfile, updateProfile } from "../../Redux/App-reducer/action";
 var profilePic =
   "https://www.gravatar.com/avatar/15b2ee297b6b04c73a2db2cc1e83735b?d=https%3A%2F%2Fd1vbcromo72rmd.cloudfront.net%2Fassets%2Fthumbs%2Fuser_large_retina-c403e04ad44c7d8b8c7904dc7e7c1893101f3672565370034edbe3dee9985509.jpg&s=200";
 const ProfileEditPage = () => {
@@ -30,37 +30,31 @@ const ProfileEditPage = () => {
 // fileData
     const [fileName, setFileName] = useState("");
 // main Data
-  const [useData, setUserData] = useState({});
+  const [userDataUpdate, setUserDataUpdate] = useState({});
   const inputRef = useRef();
   
   const { userData } = useSelector((store) => store.AppReducer);
-  console.log("userData", userData);
+  // console.log("userData", userData);
   const { isAuth, token } = useSelector((store) => store.AuthReducer);
-  console.log(isAuth, token);
+  // console.log(isAuth, token);
 
   const handleChange = (e) => {
         const { name, value } = e.target;
     
-        setUserData({
-          ...userData,
+        setUserDataUpdate({
+          ...userDataUpdate,
           [name]: value,
         });
       };
 
-      const handleSubmit = (e) => {
-            e.preventDefault();
+      const handleSubmit = () => {
+            
             const formData = new FormData();
-            formData.append("fullName", userData.fullName);
-            formData.append("email", userData.email);
-            formData.append("password", userData.password);
-        
+            formData.append("fullName", userDataUpdate.fullName);
+            formData.append("email", userDataUpdate.email);
             formData.append("image", inputRef.current.files[0]);
-            // axios
-            //   .patch("http://localhost:5000/profile/edit", formData, {
-            //     headers: { "Content-Type": "multipart/form-data" ,'Authorization': 'Bearer ' + token},
-            //   })
-            //   .then((r) => console.log(r.data))
-            //   .catch((e) => console.log(e.error));
+            // console.log("userData Modified==>",userDataUpdate);
+           isAuth && dispatch(updateProfile({formData,token})).then(()=>dispatch(getProfile(token)))
           };
 
 
@@ -73,18 +67,18 @@ const ProfileEditPage = () => {
   }, []);
   useEffect(() => {
     isAuth && dispatch(getProfile(token));
-    setUserData(userData);
+    setUserDataUpdate(userData);
   }, [isAuth, token]);
   return (
     <Box>
       <Navbar />
       <Box
         display={"flex"}
-        border="2px solid green"
+        border="1px solid white"
         margin={"auto"}
         justifyContent="center"
       >
-        <Box p="30px" border="2px solid black" marginLeft={"-25%"}>
+        <Box p="30px" border="1px solid white" marginLeft={"-25%"}>
           <Heading p="7px" as="h1" size="2xl" fontWeight="">
             Edit Your Profile
           </Heading>
@@ -97,9 +91,10 @@ const ProfileEditPage = () => {
                       <FormControl>
                         <FormLabel>Full Name</FormLabel>
                         <Input
-                            name="fullName"
+                         name="fullName"
                           placeholder={"Full Name"}
-                          value={useData.fullName}
+                          value={userDataUpdate?.fullName ? userDataUpdate?.fullName : userData?.fullName}
+                          onChange={handleChange}
                         />
                       </FormControl>
                     </Box>
@@ -111,7 +106,7 @@ const ProfileEditPage = () => {
                           placeholder={"Email"}
                           color="black"
                           isDisabled
-                          value={userData.email}
+                          value={userDataUpdate?.email ? userDataUpdate?.email : userData?.email}
                         />
                       </FormControl>
                     </Box>
@@ -119,13 +114,13 @@ const ProfileEditPage = () => {
                     <Box>
                       <FormControl>
                         <FormLabel>Update Email</FormLabel>
-                        <Input placeholder={"Update Email"} name="email" />
+                        <Input placeholder={"Update Email"} name="email" onChange={handleChange}/>
                       </FormControl>
                     </Box>
 
                     <Box>
                       <FormLabel>Auth</FormLabel>
-                      <RadioGroup onChange={setAuth} value={auth}>
+                      <RadioGroup onChange={setAuth} defaultValue="epassword">
                         <Stack direction="column">
                           <Radio value="google">Sign in with Google</Radio>
                           <Radio value="apple">Sign in with Apple</Radio>
@@ -146,12 +141,12 @@ const ProfileEditPage = () => {
 
                     <Box>
                       <FormLabel>Time Format</FormLabel>
-                      <RadioGroup onChange={setTime} value={time}>
+                      <RadioGroup onChange={setTime} defaultValue="12">
                         <Stack direction="column">
                           <Radio value="24" defaultChecked>
-                            16:34
+                            18:00
                           </Radio>
-                          <Radio value="12">4:34 PM</Radio>
+                          <Radio value="12">6:00 PM</Radio>
                         </Stack>
                       </RadioGroup>
                     </Box>
@@ -160,12 +155,12 @@ const ProfileEditPage = () => {
                       <FormLabel>Date Format</FormLabel>
                       <Box>
                         <Box>Only supported in report exports</Box>
-                        <RadioGroup onChange={setDate} value={date}>
+                        <RadioGroup onChange={setDate} defaultValue="dmy">
                           <Stack direction="column">
                             <Radio value="dmy" defaultChecked>
-                              29/09/2022 (dmy)
+                              02/10/2022 (dmy)
                             </Radio>
-                            <Radio value="mdy">09/29/2022 (mdy)</Radio>
+                            <Radio value="mdy">10/02/2022 (mdy)</Radio>
                           </Stack>
                         </RadioGroup>
                       </Box>
@@ -173,7 +168,7 @@ const ProfileEditPage = () => {
                   </Grid>
                 </Box>
                 <Box>
-                  <Button colorScheme="whatsapp" size="md">
+                  <Button colorScheme="whatsapp" size="md" onClick={handleSubmit}>
                     Update User
                   </Button>
                 </Box>
@@ -182,7 +177,7 @@ const ProfileEditPage = () => {
           </Box>
         </Box>
         <Box
-          border={"1px solid red"}
+          border={"1px solid white"}
           textAlign="center"
           height={"fit-content"}
           padding="30px"

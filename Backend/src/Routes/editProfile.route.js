@@ -31,7 +31,7 @@ router.patch("/edit",uploads.single("image"),async(req,res)=>{
             // console.log("locaFilePath===>",locaFilePath)
             var result = await uploadToCloudinary(locaFilePath);
             // console.log("result===>",result)
-            const user = await User.findOneAndUpdate({email:req.user.email},{profilePic: result.url,...req.body})
+            const user = await User.findOneAndUpdate({email:req.user.email},{profilePic: result.url,...req.body},{new:true})
             // console.log("res===.>",user)
             res.status(200).send({messsage:"Successfully Updated",data:user})
             

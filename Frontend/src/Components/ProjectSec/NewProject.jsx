@@ -7,9 +7,10 @@ import ProjectDetailsForm from './ProjectDetailsForm'
 import {useDispatch, useSelector} from "react-redux"
 import { addProject } from '../../Redux/App-reducer/action'
 import { ADD_PROJECT_FAILURE, ADD_PROJECT_SUCCESSFULL } from '../../Redux/App-reducer/actionTypes'
+import { Link, useNavigate } from 'react-router-dom'
 
 const NewProject = () => {
-
+const navigate = useNavigate()
   const[projectState,setProjectState]=useState({projectName:"",client:"",tag:""})
   const dispatch=useDispatch()
   const toast=useToast()
@@ -25,7 +26,8 @@ const NewProject = () => {
           status: 'success',
           duration: 7000,
           isClosable: true,
-          position:"top"
+          position:"top",
+          colorScheme: "green"
         })
       }else if(res.type===ADD_PROJECT_FAILURE){
         toast({
@@ -37,6 +39,9 @@ const NewProject = () => {
           position:"top"
         })
       }
+      setTimeout(() => {
+        navigate("/projects");
+      }, 2000);
     })
 
   }
@@ -53,7 +58,7 @@ const NewProject = () => {
         <Box width={"100%"} height="120px"  backgroundColor="#f2f4f8" pos="fixed" top={"0"} zIndex="2">
         <Flex justifyContent={"space-between"} >
                 <Box ml={"5%"}>
-                    <Text fontSize={"md"} fontWeight="semibold" mt={"5%"}><Icon as={AiOutlineArrowLeft} mr="2%" />  Back</Text>
+                    <Text fontSize={"md"} fontWeight="semibold" mt={"5%"}><Link to="/projects"><Icon as={AiOutlineArrowLeft} mr="2%" />  Back</Link></Text>
                     <Text fontSize={"2xl"} fontWeight="bold" mt={"24%"}>New project </Text> 
                 </Box>
                 <Button size={"sm"} colorScheme={"facebook"} 
