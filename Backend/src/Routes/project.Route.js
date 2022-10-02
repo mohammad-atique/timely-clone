@@ -41,14 +41,15 @@ projectController.get("/search",async(req,res)=>{
 
 projectController.post("/create",async(req,res)=>{
 
-    const{userId,projectName,client,tag}=req.body
+    const{projectName,client,tag}=req.body
+    const{_id}=req.user 
     const checkName=ProjectModel.findOne({projectName:projectName})
     if(!checkName){
-        if(!userId||!projectName||!client||!tag){
+        if(!_id||!projectName||!client||!tag){
             return res.status(400).json({msg:"Please fill all the input fields"})
         }
-    
-        const project=await new ProjectModel({userId:userId,projectName:projectName,client:client,tag:tag})
+        const newPayload={projectName:projectName,client:client,tag:tag,userId:_id}
+        const project=await new ProjectModel(newPayload)
     
         try{
             project.save()
