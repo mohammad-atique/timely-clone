@@ -43,7 +43,8 @@ projectController.post("/create",async(req,res)=>{
 
     const{projectName,client,tag}=req.body
     const{_id}=req.user 
-    const checkName=ProjectModel.findOne({projectName:projectName})
+    const checkName= await ProjectModel.findOne({projectName:projectName})
+    // console.log("checkName-->",checkName)
     if(!checkName){
         if(!_id||!projectName||!client||!tag){
             return res.status(400).json({msg:"Please fill all the input fields"})
