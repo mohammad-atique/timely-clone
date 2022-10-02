@@ -69,7 +69,7 @@ const EditProject = () => {
             setTag(project.tag)
           }
         }
-    },[])
+    },[id,projects])
 
   return (
     

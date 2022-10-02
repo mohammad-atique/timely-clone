@@ -25,7 +25,7 @@ const AllProjects = () => {
     <Grid gridTemplateColumns={"repeat(3,1fr)"}>
         {
             projects?.map((elem)=>(
-                <ProjectComp key={elem.projectName} projectName={elem.projectName} client={elem.client} />
+                <ProjectComp key={elem.projectName} id={elem._id} projectName={elem.projectName} client={elem.client} />
             ))
         }
 
