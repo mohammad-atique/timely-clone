@@ -10,6 +10,7 @@ const AllProjects = () => {
 
     const { token } = useSelector((store) => store.AuthReducer);
     const projects=useSelector((store)=>store.AppReducer.projectsData)
+    // console.log(projects)
     const dispatch=useDispatch()
 
 
@@ -19,7 +20,7 @@ const AllProjects = () => {
             dispatch(getProjects(token))
         
 
-    },[dispatch,projects])
+    },[])
 
   return (
     <Grid gridTemplateColumns={"repeat(3,1fr)"}>

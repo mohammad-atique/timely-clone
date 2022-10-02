@@ -15,7 +15,7 @@ const DashboardNavbar = () => {
           const navigate=useNavigate()
    
   return (
-       <Box  height="110px"  backgroundColor="#f2f4f8">
+       <Box  height="110px" width={"100%"} backgroundColor="#f2f4f8">
             <Flex justifyContent={"space-between"} mb="0.5%"  >
               <Text fontSize={"2xl"} color="#343a3f" mt="2%" ml={"3%"} fontWeight="semibold">Projects</Text>
               <Flex width={"48%"} justifyContent="space-around" mt="2%">

@@ -6,7 +6,7 @@ import Sidebar from '../Components/Sidebar'
 const ProjectsPage = () => {
   return (
     <div style={{display:"flex"}}>
-      {/* <Sidebar /> */}
+      <Sidebar />
       <DashboardNavbar/>
      
     </div>

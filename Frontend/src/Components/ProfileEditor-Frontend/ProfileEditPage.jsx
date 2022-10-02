@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getProfile, updateProfile } from "../../Redux/App-reducer/action";
+import Sidebar from "../Sidebar";
 var profilePic =
   "https://www.gravatar.com/avatar/15b2ee297b6b04c73a2db2cc1e83735b?d=https%3A%2F%2Fd1vbcromo72rmd.cloudfront.net%2Fassets%2Fthumbs%2Fuser_large_retina-c403e04ad44c7d8b8c7904dc7e7c1893101f3672565370034edbe3dee9985509.jpg&s=200";
 const ProfileEditPage = () => {
@@ -70,8 +71,8 @@ const ProfileEditPage = () => {
     setUserDataUpdate(userData);
   }, [isAuth, token]);
   return (
-    <Box>
-      <Navbar />
+    <Box  display={"flex"}>
+      <Sidebar />
       <Box
         display={"flex"}
         border="1px solid white"
