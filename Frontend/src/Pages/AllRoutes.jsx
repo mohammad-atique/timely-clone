@@ -16,11 +16,11 @@ const AllRoutes = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/projects" element={<ProjectsPage/>}/>
-      <Route path="/create" element={<CreateProjectPage/>}/>
+      <Route path="/projects/create" element={<CreateProjectPage/>}/>
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/tasks" element={<Tasks />} />
-      <Route path="/project/:id" element={<SingleProjectPage/>}/>
+      <Route path="/projects/:id" element={<SingleProjectPage/>}/>
       <Route path="/profileedit" element={<ProfileEditPage />} />
     </Routes>
   );

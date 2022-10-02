@@ -5,11 +5,14 @@ import {BsFillPersonFill} from "react-icons/bs"
 import ImportDropdown from './ImportDropdown'
 import RecentPinnedProjects from './RecentPinnedProjects'
 import LatestActivities from './LatestActivities'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import AllProjects from './AllProjects'
+
 
 
 const DashboardNavbar = () => {
 
+          const navigate=useNavigate()
    
   return (
        <Box  height="110px"  backgroundColor="#f2f4f8">
@@ -19,7 +22,9 @@ const DashboardNavbar = () => {
                 <Input width={"200px"} bgColor="white" height={"30px"} borderRadius="5px" mt={"1%"}  placeholder='Client or project'/>
                 <Button bgColor={"gray.300"} height={"30px"} mt={"1%"}><Icon as={BsFillPersonFill}/> Manage Clients</Button>
                 <ImportDropdown/>
-                <Button colorScheme={"facebook"} height={"30px"} mt={"1%"} ><Link to="/create">+ New project</Link> </Button>
+
+                <Button colorScheme={"facebook"} onClick={()=>navigate("/projects/create")} height={"30px"} mt={"1%"} >+ New project</Button>
+
               </Flex>
             </Flex>  
 
@@ -28,6 +33,7 @@ const DashboardNavbar = () => {
                <Tabs ml={"3%"} size={"sm"} variant='enclosed'>
                     <TabList>
                         <Tab bgColor={"white"} mr="0.5%" mt={"0.6%"}><Text fontSize={"md"} fontWeight="semibold" >Dashboard</Text></Tab>
+
                         <Tab bgColor={"white"} mt={"0.6%"}><Text fontSize={"md"} fontWeight="semibold">All Projects</Text></Tab>
                     </TabList>
                     <TabPanels>
@@ -38,7 +44,9 @@ const DashboardNavbar = () => {
                             </Box>
                         </TabPanel>
                         <TabPanel>
-                        <Text>All Projects</Text>
+                            <Box>
+                                <AllProjects/>
+                            </Box>
                         </TabPanel>
                     </TabPanels>
                 </Tabs>
