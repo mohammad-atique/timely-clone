@@ -1,90 +1,66 @@
-const {Router}=require("express")
-const { ProjectModel } = require("../Models/project.model")
+const {Router} = require("express")
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
+const {authentication} = require("../middlewares/authentication")
 
-const projectController=Router()
+const {TaskModel} = require("../models/task.model")
 
-projectController.get("/",async(req,res)=>{
+const tasksController = Router();
 
-    const {userId,name}=req.body
-    const projects=await ProjectModel.find({userId:userId})
 
-    if(!projects){
-        return res.status(404).json({msg:"Something went wrong"})
-    }
-    
-    return res.status(200).json({msg:"Proejcts fetched",name:name,projects:projects})
-
-})
-
-projectController.get("/search",async(req,res)=>{
-
-    const query=req.query.q 
-    let data=await ProjectModel.find({projectName:{$regex:req.query.q}})
-    if(!data){
-        return res.status(500).json({msg:"Something went wrong, please try again."})
-    }
-    return res.status(200).json({data:data})
-
+tasksController.get("/", async (req, res) => { 
+    const tasks = await TaskModel.find({userId : req.body.userId})
+    res.send(tasks)
 })
 
 
-projectController.post("/create",async(req,res)=>{
-
-    const{userId,projectName,client,tag}=req.body
-    const checkName=ProjectModel.findOne({projectName:projectName})
-    if(!checkName){
-        if(!userId||!projectName||!client||!tag){
-            return res.status(400).json({msg:"Please fill all the input fields"})
-        }
-    
-        const project=await new ProjectModel({userId:userId,projectName:projectName,client:client,tag:tag})
-    
-        try{
-            project.save()
-            return res.status(201).json({msg:"Project Created"})
-        }catch(err){
-            console.log(err)
-            return res.status(500).json({msg:"Something went wrong, please try again."})
-        }
-    }else{
-        res.status(400).json({msg:"This project already exists, please choose another name for project."})
-    }
-    
-    
-
-})
-
-projectController.patch("/update/:id",async(req,res)=>{
-    
-    const id=req.params.id
-    const payload=req.body
-
-    await ProjectModel.findByIdAndUpdate({_id:id},payload)
-
+tasksController.post("/create", async (req, res) => {
+    const {userId,Id,Subject,StartTime,EndTime,IsAllDay,EventsType,Status,Priority} = req.body;
+    console.log(req.body)
+    const task = new TaskModel({
+        userId,Id,Subject,StartTime,EndTime,IsAllDay,EventsType,Status,Priority
+    })
     try{
-        return res.status(200).json({msg:"Project updated"})
-    }catch(err){
-        console.log(err)
-        return res.status(500).json({msg:"Something went wrong"})
+        await task.save()
+        res.json("task created")
     }
-})
-
-projectController.delete("/:id",async(req,res)=>{
-    
-    const id=req.params.id
-
-    await ProjectModel.findByIdAndDelete({_id:id})
-    try{
-        return res.status(200).json({msg:"Data deleted"})
-    }catch(err){
-        console.log(err)
-        return res.status(500).json({msg:"Something went wrong"})
+    catch(err){
+        res.send("something went wrong")
     }
 })
 
 
+tasksController.delete("/delete/:taskId", async (req, res) => {
+    let {taskId} = req.params
+    taskId = parseInt(taskId)
+    console.log(taskId,typeof(taskId))
+    const deletedtask = await TaskModel.findOneAndRemove({Id : taskId})
+    // console.log(deletedtask,req.body.userId)
+    if(deletedtask){
+        res.status(200).send("Deleted")
+    }
+    else{
+        res.send("couldn't delete")
+    }
+})
+
+tasksController.patch("/edit/:taskId", async (req, res) => {
+    let {taskId} = req.params
+    taskId = parseInt(taskId)
+    console.log(taskId,typeof(taskId),req.body)
+
+    const eiditedtask = await TaskModel.findOneAndUpdate({Id : taskId},req.body)
+    console.log(eiditedtask)
+    if(eiditedtask){
+        res.send("Edited")
+    }
+    else{
+        res.send("couldn't edit");
+    }
+})
 
 
-module.exports={
-    projectController
+module.exports = {
+    tasksController
 }

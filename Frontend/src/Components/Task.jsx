@@ -30,8 +30,8 @@ import { useToast } from '@chakra-ui/react'
 const ownerData = [
   { OwnerText: 'others', EventsType: "others", OwnerColor: 'grey' },
   { OwnerText: 'Public Event', EventsType: "public-event", OwnerColor: 'green' },
-  { OwnerText: 'Commercial Event', EventsType: "commercial-event", OwnerColor: 'red' },
-  { OwnerText: 'Family Event', EventsType: "family-event", OwnerColor: 'yellow' }
+  { OwnerText: 'Commercial Event', EventsType: "commercial-event", OwnerColor: 'tomato' },
+  { OwnerText: 'Family Event', EventsType: "family-event", OwnerColor: 'Blue' }
 ];
 
 
@@ -44,8 +44,7 @@ const Tasks = () => {
   console.log(datas)
 
   // ..............................................CRUD............................................................
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzM4OGZhYTU3YTYyYjBmYzFhODI5YzgiLCJpYXQiOjE2NjQ2NTcxMzN9.1QYt8c-AyQ04kWBsb32EWCO7keL-IqJSdjOtXIGVY5w"
-  const username = "robin"
+  const token = "robin"
   
   const getData = () => {
     fetch("http://localhost:8080/tasks", {
@@ -225,7 +224,7 @@ useEffect(() => {
 
   
   return (
-    <Flex width="100%">
+    <Flex width="100%" backgroundColor={"white"} zIndex="20000000">
       <Box width="75%">
         <ScheduleComponent
           height='550px'
@@ -252,8 +251,8 @@ useEffect(() => {
       <Box width="15%" pt="10vh">
 
         <Flex width="100%" ml="10px" height="3vh"><Box width="10%" borderRadius='10px' bg="green"></Box><Text fontSize={"14px"} ml="7px">Public Event</Text></Flex><br />
-        <Flex width="100%" ml="10px" height="3vh"><Box width="10%" borderRadius='10px' bg="red"></Box><Text fontSize={"14px"} ml="7px">Commercial Event</Text></Flex><br />
-        <Flex width="100%" ml="10px" height="3vh"><Box width="10%" borderRadius='10px' bg="yellow"></Box><Text fontSize={"14px"} ml="7px">Family Event</Text></Flex><br />
+        <Flex width="100%" ml="10px" height="3vh"><Box width="10%" borderRadius='10px' bg="tomato"></Box><Text fontSize={"14px"} ml="7px">Commercial Event</Text></Flex><br />
+        <Flex width="100%" ml="10px" height="3vh"><Box width="10%" borderRadius='10px' bg="Blue"></Box><Text fontSize={"14px"} ml="7px">Family Event</Text></Flex><br />
         <Flex width="100%" ml="10px" height="3vh"><Box width="10%" borderRadius='10px' bg="grey"></Box><Text fontSize={"14px"} ml="7px">Other Events</Text></Flex>
       </Box>
 
