@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 
 const taskSchema = new mongoose.Schema({
     
-    userId : {type : String, required : true},
+
     Id:Number,
     Subject:String,
     StartTime: Object,

@@ -1,8 +1,8 @@
 const {Router} = require("express")
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
+// const bcrypt = require("bcrypt")
+// const jwt = require("jsonwebtoken")
 require("dotenv").config()
-const {authentication} = require("../middlewares/authentication")
+// const {authentication} = require("../middlewares/authentication")
 
 const {TaskModel} = require("../models/task.model")
 
@@ -10,20 +10,19 @@ const tasksController = Router();
 
 
 tasksController.get("/", async (req, res) => { 
-    const tasks = await TaskModel.find({userId : req.body.userId})
-    res.send(tasks)
+    const tasks = await TaskModel.find()
+    res.send({tasks:tasks})
 })
 
 
 tasksController.post("/create", async (req, res) => {
-    const {userId,Id,Subject,StartTime,EndTime,IsAllDay,EventsType,Status,Priority} = req.body;
+   
+    // const {Id,Subject,StartTime,EndTime,IsAllDay,EventsType,Status,Priority} = req.body;
     console.log(req.body)
-    const task = new TaskModel({
-        userId,Id,Subject,StartTime,EndTime,IsAllDay,EventsType,Status,Priority
-    })
+    const task = new TaskModel(req.body)
     try{
         await task.save()
-        res.json("task created")
+        res.send({task:task})
     }
     catch(err){
         res.send("something went wrong")
@@ -33,12 +32,10 @@ tasksController.post("/create", async (req, res) => {
 
 tasksController.delete("/delete/:taskId", async (req, res) => {
     let {taskId} = req.params
-    taskId = parseInt(taskId)
-    console.log(taskId,typeof(taskId))
-    const deletedtask = await TaskModel.findOneAndRemove({Id : taskId})
+    const deletedtask = await TaskModel.findOneAndDelete({Id:taskId},{new:true})
     // console.log(deletedtask,req.body.userId)
     if(deletedtask){
-        res.status(200).send("Deleted")
+        res.status(200).send({task:deletedtask})
     }
     else{
         res.send("couldn't delete")
@@ -47,13 +44,13 @@ tasksController.delete("/delete/:taskId", async (req, res) => {
 
 tasksController.patch("/edit/:taskId", async (req, res) => {
     let {taskId} = req.params
-    taskId = parseInt(taskId)
-    console.log(taskId,typeof(taskId),req.body)
+    // taskId = parseInt(taskId)
+    // console.log(taskId,typeof(taskId),req.body)
 
-    const eiditedtask = await TaskModel.findOneAndUpdate({Id : taskId},req.body)
-    console.log(eiditedtask)
+    const eiditedtask = await TaskModel.findOneAndUpdate({Id : taskId},req.body,{new:true})
+    // console.log(eiditedtask)
     if(eiditedtask){
-        res.send("Edited")
+        res.send({task:eiditedtask})
     }
     else{
         res.send("couldn't edit");

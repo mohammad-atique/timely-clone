@@ -6,6 +6,8 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { useState, useEffect } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
+import { useSelector } from 'react-redux';
+import Sidebar from './Sidebar';
 
 
 // const data = [
@@ -44,11 +46,11 @@ const Tasks = () => {
   console.log(datas)
 
   // ..............................................CRUD............................................................
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzM4OGZhYTU3YTYyYjBmYzFhODI5YzgiLCJpYXQiOjE2NjQ2NTcxMzN9.1QYt8c-AyQ04kWBsb32EWCO7keL-IqJSdjOtXIGVY5w"
+  const  { isAuth, token } = useSelector((store) => store.AuthReducer);
   const username = "robin"
   
   const getData = () => {
-    fetch("http://localhost:8080/tasks", {
+    fetch("http://localhost:5000/tasks", {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${token}`
@@ -62,17 +64,9 @@ const Tasks = () => {
 
 const posttask = (data) => {
   // console.log(username)
-  if(username=="" || username==null)
-  {
-      toast({
-          title: 'Please Login first..!!',
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-        })
-  }
+  
 
-  else{fetch('http://localhost:8080/tasks/create', {
+  fetch('http://localhost:5000/tasks/create', {
       method: 'POST',
       headers: {
           'Authorization': `Bearer ${token}`,
@@ -89,12 +83,12 @@ const posttask = (data) => {
         }))
       .catch((err) => console.log(err))}
       
-}
+
 
 
 const deletetask = (did) => {
 console.log(did)
-  fetch(`http://localhost:8080/tasks/delete/${did}`, {
+  fetch(`http://localhost:5000/tasks/delete/${did}`, {
       method: 'DELETE',
       headers: {
           'Authorization': `Bearer ${token}`,
@@ -115,7 +109,7 @@ console.log(did)
 const edittask = (data,did) => {
 console.log(did)
 
-  fetch(`http://localhost:8080/tasks/edit/${did}`, {
+  fetch(`http://localhost:5000/tasks/edit/${did}`, {
       method: 'PATCH',
       headers: {
           'Authorization': `Bearer ${token}`,
@@ -226,6 +220,9 @@ useEffect(() => {
   
   return (
     <Flex width="100%">
+      <Box>
+        <Sidebar />
+      </Box>
       <Box width="75%">
         <ScheduleComponent
           height='550px'
