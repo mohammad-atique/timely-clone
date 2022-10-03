@@ -46,19 +46,20 @@ const Tasks = () => {
   console.log(datas)
 
   // ..............................................CRUD............................................................
-  const  { isAuth, token } = useSelector((store) => store.AuthReducer);
-  const username = "robin"
+
+  // const { isAuth, token } = useSelector((store) => store.AuthReducer)
   
   const getData = () => {
-    fetch("http://localhost:5000/tasks", {
+    fetch("https://mysterious-fjord-00613.herokuapp.com/tasks", {
         method: "GET",
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
+        // headers: {
+        //     'Authorization': `Bearer ${token}`
+        // }
     })
         .then((res) => res.json())
         .then((res) => setdata(res))
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
+
 }
 
 
@@ -66,10 +67,12 @@ const posttask = (data) => {
   // console.log(username)
   
 
-  fetch('http://localhost:5000/tasks/create', {
+
+  fetch('https://mysterious-fjord-00613.herokuapp.com/tasks/create', {
       method: 'POST',
       headers: {
-          'Authorization': `Bearer ${token}`,
+          // 'Authorization': `Bearer ${token}`,
+
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
@@ -82,16 +85,17 @@ const posttask = (data) => {
           isClosable: true,
         }))
       .catch((err) => console.log(err))}
-      
 
 
 
 const deletetask = (did) => {
 console.log(did)
-  fetch(`http://localhost:5000/tasks/delete/${did}`, {
+
+  fetch(`https://mysterious-fjord-00613.herokuapp.com/tasks/delete/${did}`, {
       method: 'DELETE',
       headers: {
-          'Authorization': `Bearer ${token}`,
+          // 'Authorization': `Bearer ${token}`,
+
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
@@ -109,10 +113,12 @@ console.log(did)
 const edittask = (data,did) => {
 console.log(did)
 
-  fetch(`http://localhost:5000/tasks/edit/${did}`, {
+
+  fetch(`https://mysterious-fjord-00613.herokuapp.com/tasks/edit/${did}`, {
       method: 'PATCH',
       headers: {
-          'Authorization': `Bearer ${token}`,
+          // 'Authorization': `Bearer ${token}`,
+
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
@@ -220,9 +226,9 @@ useEffect(() => {
   
   return (
     <Flex width="100%">
-      <Box>
-        <Sidebar />
-      </Box>
+
+      <Box><Sidebar/></Box>
+
       <Box width="75%">
         <ScheduleComponent
           height='550px'
