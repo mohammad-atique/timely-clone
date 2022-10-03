@@ -1,34 +1,12 @@
 import * as React from 'react';
 import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, ResourcesDirective, ResourceDirective } from '@syncfusion/ej2-react-schedule';
 import { DataManager, UrlAdaptor } from "@syncfusion/ej2-data";
-import { extend, createElement } from '@syncfusion/ej2-base';
-import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { useState, useEffect } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
-import { useSelector } from 'react-redux';
 import Sidebar from './Sidebar';
 
 
-// const data = [
-//   {
-//     Id: 2,
-//     Subject: 'Meeting',
-//     StartTime: new Date(2018, 1, 15, 10, 0),
-//     EndTime: new Date(2018, 1, 15, 12, 30),
-//     IsAllDay: false,
-//     Status: 'Completed',
-//     Priority: 'High'
-//   },
-//   {
-//     Id: 2,
-//     Subject: 'Meeting',
-//     StartTime: new Date(2018, 1, 15, 10, 0),
-//     EndTime: new Date(2018, 1, 15, 12, 30),
-//     IsAllDay: false,
-//     Status: 'Completed',
-//     Priority: 'High'
-//   }]
 const ownerData = [
   { OwnerText: 'others', EventsType: "others", OwnerColor: 'grey' },
   { OwnerText: 'Public Event', EventsType: "public-event", OwnerColor: 'green' },
@@ -36,11 +14,9 @@ const ownerData = [
   { OwnerText: 'Family Event', EventsType: "family-event", OwnerColor: 'yellow' }
 ];
 
-
-
 const Tasks = () => {
   const [datas, setdata] = useState([])
-  const [profiles, setProfile] = useState([])
+ 
   const toast = useToast();
 
   console.log(datas)

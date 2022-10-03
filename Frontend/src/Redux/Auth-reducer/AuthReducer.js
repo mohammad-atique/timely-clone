@@ -29,6 +29,7 @@ export const AuthReducer = (state = signInData, action) => {
         isAuth: true,
         token: payload.token,
         userData: payload.data,
+        isError:false,
       };
     case types.SIGNIN_FAILURE:
       return {

@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
-import { Box, Button, Image } from "@chakra-ui/react";
+import { Box, Button, Image, useToast } from "@chakra-ui/react";
+import {UPDATE_PROFILE_SUCCESS,UPDATE_PROFILE_FAILURE} from "../../Redux/App-reducer/actionTypes"
 import {
   Stack,
   Grid,
@@ -21,45 +22,72 @@ import Sidebar from "../Sidebar";
 var profilePic =
   "https://www.gravatar.com/avatar/15b2ee297b6b04c73a2db2cc1e83735b?d=https%3A%2F%2Fd1vbcromo72rmd.cloudfront.net%2Fassets%2Fthumbs%2Fuser_large_retina-c403e04ad44c7d8b8c7904dc7e7c1893101f3672565370034edbe3dee9985509.jpg&s=200";
 const ProfileEditPage = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-// raw Data
-    const [auth, setAuth] = useState("google");
-    const [time, setTime] = useState("24");
-    const [date, setDate] = useState("dmy");
-    const [timez, setTimez] = useState("");
-// fileData
-    const [fileName, setFileName] = useState("");
-// main Data
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const toast = useToast();
+  // raw Data
+  const [auth, setAuth] = useState("google");
+  const [time, setTime] = useState("24");
+  const [date, setDate] = useState("dmy");
+  const [timez, setTimez] = useState("");
+  // fileData
+  const [fileName, setFileName] = useState("");
+  // main Data
   const [userDataUpdate, setUserDataUpdate] = useState({});
   const inputRef = useRef();
-  
+
   const { userData } = useSelector((store) => store.AppReducer);
   // console.log("userData", userData);
   const { isAuth, token } = useSelector((store) => store.AuthReducer);
   // console.log(isAuth, token);
 
   const handleChange = (e) => {
-        const { name, value } = e.target;
+    const { name, value } = e.target;
+
+    setUserDataUpdate({
+      ...userDataUpdate,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = () => {
+    const formData = new FormData();
+    formData.append("fullName", userDataUpdate.fullName);
+    formData.append("email", userDataUpdate.email);
+    formData.append("image", inputRef.current.files[0]);
+    // console.log("userData Modified==>",userDataUpdate);
+
     
-        setUserDataUpdate({
-          ...userDataUpdate,
-          [name]: value,
-        });
-      };
-
-      const handleSubmit = () => {
-            
-            const formData = new FormData();
-            formData.append("fullName", userDataUpdate.fullName);
-            formData.append("email", userDataUpdate.email);
-            formData.append("image", inputRef.current.files[0]);
-            // console.log("userData Modified==>",userDataUpdate);
-           isAuth && dispatch(updateProfile({formData,token})).then(()=>dispatch(getProfile(token)))
-          };
 
 
- 
+    isAuth &&
+      dispatch(updateProfile({ formData, token })).then((res)=>{
+
+        if(res.type===UPDATE_PROFILE_SUCCESS){
+       
+          toast({
+            title: 'Profile updated.',
+            status: "success",
+            duration: 900,
+            position: "top",
+            isClosable: true,
+          })
+        }else if(res.type===UPDATE_PROFILE_FAILURE){
+          
+          toast({
+            title: 'Profile Update Failed.',
+            status: 'error',
+            duration: 900,
+            position: "top",
+            isClosable: true,
+          })
+        }
+  
+      }).then(() =>
+        dispatch(getProfile(token))
+      );
+  };
   
   useEffect(() => {
     const today = new Date();
@@ -71,7 +99,7 @@ const ProfileEditPage = () => {
     setUserDataUpdate(userData);
   }, [isAuth, token]);
   return (
-    <Box  display={"flex"}>
+    <Box display={"flex"}>
       <Sidebar />
       <Box
         display={"flex"}
@@ -92,9 +120,13 @@ const ProfileEditPage = () => {
                       <FormControl>
                         <FormLabel>Full Name</FormLabel>
                         <Input
-                         name="fullName"
+                          name="fullName"
                           placeholder={"Full Name"}
-                          value={userDataUpdate?.fullName ? userDataUpdate?.fullName : userData?.fullName}
+                          value={
+                            userDataUpdate?.fullName
+                              ? userDataUpdate?.fullName
+                              : userData?.fullName
+                          }
                           onChange={handleChange}
                         />
                       </FormControl>
@@ -107,7 +139,11 @@ const ProfileEditPage = () => {
                           placeholder={"Email"}
                           color="black"
                           isDisabled
-                          value={userDataUpdate?.email ? userDataUpdate?.email : userData?.email}
+                          value={
+                            userDataUpdate?.email
+                              ? userDataUpdate?.email
+                              : userData?.email
+                          }
                         />
                       </FormControl>
                     </Box>
@@ -115,7 +151,11 @@ const ProfileEditPage = () => {
                     <Box>
                       <FormControl>
                         <FormLabel>Update Email</FormLabel>
-                        <Input placeholder={"Update Email"} name="email" onChange={handleChange}/>
+                        <Input
+                          placeholder={"Update Email"}
+                          name="email"
+                          onChange={handleChange}
+                        />
                       </FormControl>
                     </Box>
 
@@ -169,7 +209,11 @@ const ProfileEditPage = () => {
                   </Grid>
                 </Box>
                 <Box>
-                  <Button colorScheme="whatsapp" size="md" onClick={handleSubmit}>
+                  <Button
+                    colorScheme="whatsapp"
+                    size="md"
+                    onClick={handleSubmit}
+                  >
                     Update User
                   </Button>
                 </Box>

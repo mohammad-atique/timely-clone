@@ -44,7 +44,7 @@ export default function Signup() {
   // console.log(successfullyCreated)
 
   useEffect(() => {
-    if (successfullyCreated) {
+    if (successfullyCreated === true) {
       toast({
         title: `Login Successfull`,
         status: "success",

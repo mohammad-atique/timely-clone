@@ -6,7 +6,7 @@ const signInFunc = (data) => (dispatch) => {
   dispatch({ type: types.SIGNIN_REQUEST });
 
   axios
-    .post("http://localhost:5000/auth/login", data)
+    .post("https://infinite-shelf-40557.herokuapp.com/auth/login", data)
     .then((response) => {
       // console.log(response);
       //   dispatch({ type: SIGNIN_SUCCESS, payload: response.data.token })
@@ -29,7 +29,7 @@ const signUpFunc = (data) => (dispatch) => {
   dispatch({ type: types.SIGNUP_REQUEST });
 
   axios
-    .post("http://localhost:5000/auth/register", data)
+    .post("https://infinite-shelf-40557.herokuapp.com/auth/register", data)
     .then((response) => {
       // console.log(response)
       dispatch({ type: types.SIGNUP_SUCCESS, payload: response.data.data });

@@ -4,18 +4,25 @@
 }
 .sidebar {
   height: 150vh;
-  /* width: 7%; */
+  /* border: 1px solid green; */
+  width: 5%;
   width: auto;
   background-color: #383144;
   display: flex;
   flex-direction: column;
+  /* justify-content: space-between; */
   align-items: center;
 }
 .sidebar > div {
   color: rgb(101, 98, 98);
+  /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* vertical-align: middle; */
+  /* justify-content: space-between; */
+  width: 100%;
+  /* justify-content: center; */
 }
 .sidebar > div:hover {
   color: white;
