@@ -1,16 +1,18 @@
 const express = require("express");
 const cors = require('cors');
-const { projectController } = require("./routes/project.Route");
-const userRoute = require("./routes/auth.routes");
+const projectController  = require("./routes/project.route");
+const userRoute = require("./routes/auth.route");
 const authenticate = require("./middlewares/authMiddleware")
-const profileRouter = require("./Routes/editProfile.route")
-const hoursRouter = require("./Routes/hours.route")
-const connect = require("./configs/db.js");
-// const {tasksController} = require("./Routes/task.routes")
+const profileRouter = require("./routes/editprofile.route")
+const hoursRouter = require("./routes/hours.route")
+const connect = require("./configs/db");
+require("dotenv").config();
+let port=process.env.PORT || 5000;
+
 const app = express();
 
 app.use(cors())
-app.use(express.urlencoded({ extended: false,limit :'50mb' }));
+
 app.use(express.json());
 
 app.get("/", (req,res)=> {
@@ -23,11 +25,7 @@ app.use("/auth",userRoute);
 app.use("/profile",authenticate,profileRouter)
 app.use("/hours",authenticate,hoursRouter)
 app.use("/projects",authenticate,projectController)
-// app.use("/tasks",authenticate,tasksController)
 
-
-
-let port=process.env.PORT || 5000;
 
 app.listen(port, function() {
 
@@ -38,4 +36,6 @@ app.listen(port, function() {
     console.error(err.message);
   }
 });
+
+
 module.exports = app;

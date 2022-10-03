@@ -2,9 +2,8 @@
 const express = require("express");
 const User = require("../models/user.model");
 const uploads = require("../middlewares/uploads");
-require("dotenv").config();
-const jwt = require("jsonwebtoken");
 const uploadToCloudinary = require("../middlewares/cloudinary.upload");
+require("dotenv").config();
 const router = express.Router();
 
 router.get("/",async(req,res)=>{

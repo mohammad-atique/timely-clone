@@ -14,7 +14,6 @@ const projectSchema=new mongoose.Schema({
 
 const ProjectModel=mongoose.model("timelyproject",projectSchema)
 
-module.exports={
-    ProjectModel
-}
+module.exports=ProjectModel
+
 

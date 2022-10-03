@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const { ProjectModel } = require("../Models/project.model")
+const  ProjectModel  = require("../models/project.model")
 
 const projectController=Router()
 
@@ -98,6 +98,4 @@ projectController.delete("/:id",async(req,res)=>{
 
 
 
-module.exports={
-    projectController
-}
+module.exports=projectController

@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const { HoursModel } = require("../Models/hours.model")
+const  HoursModel  = require("../models/hours.model")
 
 const router=Router()
 
@@ -68,5 +68,4 @@ router.delete("/:id",async(req,res)=>{
 
 
 
-module.exports=
-    router
+module.exports=router

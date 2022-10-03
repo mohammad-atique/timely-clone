@@ -13,7 +13,6 @@ const hoursSchema=new mongoose.Schema({
 
 const HoursModel=mongoose.model("hours",hoursSchema)
 
-module.exports={
-    HoursModel
-}
+module.exports= HoursModel
+
 

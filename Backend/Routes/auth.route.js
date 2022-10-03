@@ -1,10 +1,8 @@
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const User = require("../models/user.model");
-
-require("dotenv").config();
 const express = require("express");
-
+require("dotenv").config();
 const router = express.Router();
 
 const newtoken = (user) => {
