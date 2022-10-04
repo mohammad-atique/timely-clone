@@ -55,7 +55,6 @@ export const addProject = (payload) => (dispatch) => {
 };
 export const updateProject = (payload, id) => (dispatch) => {
   dispatch({ type: types.UPDATE_PROJECT_REQUEST });
-
   return axios
     .patch(
       `https://infinite-shelf-40557.herokuapp.com/projects/update/${id}`,
