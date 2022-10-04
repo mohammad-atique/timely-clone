@@ -3,7 +3,7 @@
 
 # Project-Timlyapp-clone
 
-Timlely is one of the fastest growing online timely tracking website based in Norway, offering an extensive selection of time management at very small budget and activities of every kind at competitive rates.
+Timlely is one of the fastest growing online time tracking website based in Norway, offering an extensive selection of time management at very small budget and activities of every kind at competitive rates.
 
 <img src="https://assets-global.website-files.com/6257f2528a39952d4e8af286/6257f2528a39955aef8af720_timely-new-logo.svg" width="200px">
 
