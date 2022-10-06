@@ -9,7 +9,7 @@ Timlely is one of the fastest growing online time tracking website based in Norw
 
 \*We as a team given a task to Clone the timelyapp.com Website.\*\*
 
-# To visit our website [Click here](https://chic-meringue-64a4f0.netlify.app/)
+# To visit our website [Click here](https://app-timely.netlify.app/)
 
 ## NPM Packages used
 
